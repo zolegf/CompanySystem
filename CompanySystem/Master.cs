@@ -52,7 +52,17 @@ namespace CompanySystem
             };
             Users.Add(employee);
 
-            var project = new Project
+			var employee2 = new Employee()
+			{
+				Id = NextObjectId,
+				FirstName = "Sima",
+				LastName = "Simic",
+				Username = "simke",
+				Password = "simke"
+			};
+			Users.Add(employee2);
+
+			var project = new Project
             {
                 Id = NextObjectId,
                 Title = "APS",
@@ -90,7 +100,9 @@ namespace CompanySystem
             });
 
             manager.Department = Departments.Find(d => d.Name.Equals("Accounting"));
-        }
+			employee.Department = Departments.Find(d => d.Name.Equals("Accounting"));
+			employee2.Department = Departments.Find(d => d.Name.Equals("Accounting"));
+		}
 
         private static Master Load()
         {
@@ -127,6 +139,8 @@ namespace CompanySystem
 
         public void SaveChanges()
         {
+			if (!Directory.Exists(Path.GetDirectoryName(CompanyFile)))
+				Directory.CreateDirectory(Path.GetDirectoryName(CompanyFile));
 
             using (FileStream stream = new FileStream(CompanyFile, FileMode.Create))
             {

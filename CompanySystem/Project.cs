@@ -25,6 +25,11 @@ namespace CompanySystem
         public ProjectState State { get; set; }
 
         public Manager Manager { get; set; }
-        public List<Task> Tasks { get; set; } = new List<Task>(); 
-    }
+        public List<Task> Tasks { get; set; } = new List<Task>();
+
+		public override string ToString()
+		{
+			return Title;
+		}
+	}
 }

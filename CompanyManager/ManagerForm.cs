@@ -61,7 +61,8 @@ namespace CompanyManager
 
 				});
 
-				listTasks.Items.Add(listItem);
+                listItem.Tag = item;
+                listTasks.Items.Add(listItem);
 			}
 		}
 		private void listProjects_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,5 +116,14 @@ namespace CompanyManager
 
 
 		}
-	}
+
+        private void btnEditTask_Click(object sender, EventArgs e)
+        {
+            var taskDlg = new TaskDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent, Task = (Task)listTasks.SelectedItems[0].Tag };
+            if (taskDlg.ShowDialog() == DialogResult.OK)
+            {
+                listTasks.Refresh();
+            }
+        }
+    }
 }

@@ -206,6 +206,7 @@
             this.Controls.Add(this.txtTaskTitle);
             this.Name = "TaskDlg";
             this.Text = "TaskDlg";
+            this.Load += new System.EventHandler(this.TaskDlg_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "5",
             "APS",
             "05.06.2017"}, -1);
@@ -108,7 +108,7 @@
             this.Description});
             this.listProjects.FullRowSelect = true;
             this.listProjects.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listProjects.Location = new System.Drawing.Point(14, 25);
             this.listProjects.MultiSelect = false;
             this.listProjects.Name = "listProjects";
@@ -155,6 +155,7 @@
             this.columnHeader8,
             this.columnHeader4,
             this.columnHeader5});
+            this.listTasks.FullRowSelect = true;
             this.listTasks.Location = new System.Drawing.Point(14, 167);
             this.listTasks.Name = "listTasks";
             this.listTasks.Size = new System.Drawing.Size(530, 97);
@@ -216,6 +217,7 @@
             this.btnEditTask.TabIndex = 18;
             this.btnEditTask.Text = "Edit";
             this.btnEditTask.UseVisualStyleBackColor = true;
+            this.btnEditTask.Click += new System.EventHandler(this.btnEditTask_Click);
             // 
             // btnDeleteTask
             // 

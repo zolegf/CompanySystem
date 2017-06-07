@@ -34,6 +34,9 @@ namespace CompanyManager
                 Manager = user
             };
             user.Projects.Add(project);
+
+            // dodaj projekat u master listu i u Tag
+            // Tag = 
             Master.Instance.SaveChanges();
             DialogResult = DialogResult.OK;
             

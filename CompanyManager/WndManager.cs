@@ -10,7 +10,8 @@ namespace CompanyManager
 		{
 			InitializeComponent();
 
-			LoadProjects((Manager)Master.Instance.curentUser);
+			LoadProjects((Manager)Master.Instance.CurentUser);
+			Text = Master.Instance.WindowTitle;
 		}
 
 		private void LoadProjects(Manager manager)
@@ -99,7 +100,7 @@ namespace CompanyManager
 
 		private void onClickDelete(object sender, EventArgs e)
 		{
-			Manager user = (Manager)Master.Instance.curentUser;
+			Manager user = (Manager)Master.Instance.CurentUser;
 			var selectedItem = listProjects.SelectedItems[0];
 			if (selectedItem != null)
 			{

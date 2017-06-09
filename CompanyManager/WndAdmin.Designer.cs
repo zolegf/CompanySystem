@@ -28,49 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.label6 = new System.Windows.Forms.Label();
-			this.btnAddNewDepartment = new System.Windows.Forms.Button();
+			this.btnAddDepartment = new System.Windows.Forms.Button();
 			this.btnEditDeaprtment = new System.Windows.Forms.Button();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.listView1 = new System.Windows.Forms.ListView();
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.listDepartments = new System.Windows.Forms.ListView();
 			this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.listEmployees = new System.Windows.Forms.ListView();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnDelete = new System.Windows.Forms.Button();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.menuStrip1.SuspendLayout();
+			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// label6
+			// btnAddDepartment
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(10, 37);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(67, 13);
-			this.label6.TabIndex = 6;
-			this.label6.Text = "Departments";
-			// 
-			// btnAddNewDepartment
-			// 
-			this.btnAddNewDepartment.Location = new System.Drawing.Point(442, 156);
-			this.btnAddNewDepartment.Name = "btnAddNewDepartment";
-			this.btnAddNewDepartment.Size = new System.Drawing.Size(119, 23);
-			this.btnAddNewDepartment.TabIndex = 8;
-			this.btnAddNewDepartment.Text = "Add new Department";
-			this.btnAddNewDepartment.UseVisualStyleBackColor = true;
+			this.btnAddDepartment.Location = new System.Drawing.Point(165, 122);
+			this.btnAddDepartment.Name = "btnAddDepartment";
+			this.btnAddDepartment.Size = new System.Drawing.Size(119, 23);
+			this.btnAddDepartment.TabIndex = 8;
+			this.btnAddDepartment.Text = "Add";
+			this.btnAddDepartment.UseVisualStyleBackColor = true;
+			this.btnAddDepartment.Click += new System.EventHandler(this.btnAddDepartment_Click);
 			// 
 			// btnEditDeaprtment
 			// 
-			this.btnEditDeaprtment.Location = new System.Drawing.Point(317, 156);
+			this.btnEditDeaprtment.Location = new System.Drawing.Point(305, 122);
 			this.btnEditDeaprtment.Name = "btnEditDeaprtment";
 			this.btnEditDeaprtment.Size = new System.Drawing.Size(119, 23);
 			this.btnEditDeaprtment.TabIndex = 10;
-			this.btnEditDeaprtment.Text = "Edit Department";
+			this.btnEditDeaprtment.Text = "Edit";
 			this.btnEditDeaprtment.UseVisualStyleBackColor = true;
+			this.btnEditDeaprtment.Click += new System.EventHandler(this.btnEditDeaprtment_Click);
 			// 
 			// menuStrip1
 			// 
@@ -78,7 +81,7 @@
             this.fileToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(573, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(621, 24);
 			this.menuStrip1.TabIndex = 11;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -97,80 +100,161 @@
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
 			this.openToolStripMenuItem.Text = "&Open...";
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
 			this.saveToolStripMenuItem.Text = "&Save";
-			// 
-			// exitToolStripMenuItem
-			// 
-			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.exitToolStripMenuItem.Text = "&Exit";
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
 			this.saveAsToolStripMenuItem.Text = "Save &As...";
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(120, 6);
 			// 
-			// listView1
+			// exitToolStripMenuItem
 			// 
-			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+			this.exitToolStripMenuItem.Text = "&Exit";
+			// 
+			// listDepartments
+			// 
+			this.listDepartments.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.name,
             this.description});
-			this.listView1.Location = new System.Drawing.Point(13, 53);
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(548, 97);
-			this.listView1.TabIndex = 12;
-			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.View = System.Windows.Forms.View.Details;
+			this.listDepartments.FullRowSelect = true;
+			this.listDepartments.Location = new System.Drawing.Point(16, 19);
+			this.listDepartments.MultiSelect = false;
+			this.listDepartments.Name = "listDepartments";
+			this.listDepartments.Size = new System.Drawing.Size(548, 97);
+			this.listDepartments.TabIndex = 12;
+			this.listDepartments.UseCompatibleStateImageBehavior = false;
+			this.listDepartments.View = System.Windows.Forms.View.Details;
+			this.listDepartments.DoubleClick += new System.EventHandler(this.listDepartments_DoubleClick);
 			// 
 			// id
 			// 
 			this.id.Text = "Id";
+			this.id.Width = 30;
 			// 
 			// name
 			// 
 			this.name.Text = "Name";
+			this.name.Width = 120;
 			// 
 			// description
 			// 
 			this.description.Text = "Description";
+			this.description.Width = 360;
 			// 
-			// AdminForm
+			// listEmployees
+			// 
+			this.listEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+			this.listEmployees.FullRowSelect = true;
+			this.listEmployees.Location = new System.Drawing.Point(16, 28);
+			this.listEmployees.MultiSelect = false;
+			this.listEmployees.Name = "listEmployees";
+			this.listEmployees.Size = new System.Drawing.Size(548, 113);
+			this.listEmployees.TabIndex = 12;
+			this.listEmployees.UseCompatibleStateImageBehavior = false;
+			this.listEmployees.View = System.Windows.Forms.View.Details;
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "Id";
+			this.columnHeader1.Width = 30;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "First Name";
+			this.columnHeader2.Width = 120;
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "Last Name";
+			this.columnHeader3.Width = 120;
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Username";
+			this.columnHeader4.Width = 100;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Password";
+			this.columnHeader5.Width = 100;
+			// 
+			// btnDelete
+			// 
+			this.btnDelete.Location = new System.Drawing.Point(445, 122);
+			this.btnDelete.Name = "btnDelete";
+			this.btnDelete.Size = new System.Drawing.Size(119, 23);
+			this.btnDelete.TabIndex = 10;
+			this.btnDelete.Text = "Delete";
+			this.btnDelete.UseVisualStyleBackColor = true;
+			this.btnDelete.Click += new System.EventHandler(this.btnDeleteDeaprtment_Click);
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Controls.Add(this.listDepartments);
+			this.groupBox1.Controls.Add(this.btnAddDepartment);
+			this.groupBox1.Controls.Add(this.btnEditDeaprtment);
+			this.groupBox1.Controls.Add(this.btnDelete);
+			this.groupBox1.Location = new System.Drawing.Point(12, 27);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(582, 153);
+			this.groupBox1.TabIndex = 13;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Departments";
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.listEmployees);
+			this.groupBox2.Location = new System.Drawing.Point(12, 207);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(582, 203);
+			this.groupBox2.TabIndex = 14;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Employees";
+			// 
+			// WndAdmin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(573, 413);
-			this.Controls.Add(this.listView1);
-			this.Controls.Add(this.btnEditDeaprtment);
-			this.Controls.Add(this.btnAddNewDepartment);
-			this.Controls.Add(this.label6);
+			this.ClientSize = new System.Drawing.Size(621, 471);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip1;
-			this.Name = "AdminForm";
-			this.Text = "AdminForm";
+			this.Name = "WndAdmin";
+			this.Text = "Administrator";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnAddNewDepartment;
+        private System.Windows.Forms.Button btnAddDepartment;
         private System.Windows.Forms.Button btnEditDeaprtment;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -179,9 +263,18 @@
 		private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.ListView listDepartments;
 		private System.Windows.Forms.ColumnHeader id;
 		private System.Windows.Forms.ColumnHeader name;
 		private System.Windows.Forms.ColumnHeader description;
+		private System.Windows.Forms.ListView listEmployees;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.Button btnDelete;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox groupBox2;
 	}
 }

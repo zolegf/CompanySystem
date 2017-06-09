@@ -17,7 +17,7 @@ namespace CompanyManager
         {
             if (Task == null)
             {
-                Manager user = (Manager)Master.Instance.curentUser;
+                Manager user = (Manager)Master.Instance.CurentUser;
                 var task = new Task()
                 {
                     Id = Master.Instance.NextObjectId,
@@ -61,7 +61,7 @@ namespace CompanyManager
         {
             if (Task == null)
             {
-                Manager user = (Manager)Master.Instance.curentUser;
+                Manager user = (Manager)Master.Instance.CurentUser;
                 foreach (var item in Master.Instance.Users)
                 {
                     if (item is Manager || item is Admin || item.Department != user.Department)

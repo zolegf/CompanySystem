@@ -11,63 +11,105 @@ using CompanySystem;
 
 namespace CompanyManager
 {
-    public partial class DlgDepartment : Form
-    {
-        public DlgDepartment()
-        {
-            InitializeComponent();
-            LoadDepartmentList();
-        }
+	public partial class DlgDepartment : Form
+	{
 
-        private void LoadDepartmentList()
-        {
-            foreach (var item in Master.Instance.Users)
-            {
-                if (item is Admin)
-                    continue;
+		public DlgDepartment()
+		{
+			InitializeComponent();
+		}
 
-                listEmployees.Items.Add(item);
-            }
-        }
+		public Department Department { get; set; }
 
-        private void onAddToDepartmentClick(object sender, EventArgs e)
-        {
-            listDepartmentEmployees.Items.Add(listEmployees.SelectedItem);
-        }
+		private void LoadEmployees(ListBox list, IEnumerable<User> users)
+		{
+			list.Items.Clear();
 
-        private void OnUsersIndexChanged(object sender, EventArgs e)
-        {
-            btnAddToDepartment.Enabled = listEmployees.SelectedItem != null;
-        }
+			foreach (var item in users)
+			{
+				if (item is Admin)
+					continue;
 
-        private void onClickOK(object sender, EventArgs e)
-        {
-            var newDepartment = new Department()
-            {
-                Id = Master.Instance.NextObjectId,
-                Name = txtDepartmentName.Text,
-                Description = txtDepartmentDescription.Text,
-        };
+				list.Items.Add(item);
+			}
+		}
 
-            foreach (var item in listDepartmentEmployees.Items)
-            {
-                var user = (User)item;
-                user.Department.Employees.Remove(user);
-                newDepartment.Employees.Add(user);
-                user.Department = newDepartment;
-            }
+		private void onAddToDepartmentClick(object sender, EventArgs e)
+		{
+			lbDepartmentEmployees.Items.Add(lbAllEmployees.SelectedItem);
+		}
 
-            Master.Instance.Departments.Add(newDepartment);
-            Master.Instance.SaveChanges();
+		private void onRemoveFromDepartmentClick(object sender, EventArgs e)
+		{
+			lbDepartmentEmployees.Items.Remove(lbDepartmentEmployees.SelectedItem);
+		}
 
-            DialogResult = DialogResult.OK;
-            
+		private void OnUsersIndexChanged(object sender, EventArgs e)
+		{
+			btnAddToDepartment.Enabled = lbAllEmployees.SelectedItem != null;
+		}
 
-        }
+		private void lbDepartmentEmployees_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			btnRemoveFromDepartment.Enabled = lbDepartmentEmployees.SelectedItem != null;
+		}
 
-        private void onClickCancel(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-        }
-    }
+		private void onClickOK(object sender, EventArgs e)
+		{
+			if (Department == null)
+			{
+				var newDepartment = new Department()
+				{
+					Id = Master.Instance.NextObjectId,
+					Name = txtDepartmentName.Text,
+					Description = txtDepartmentDescription.Text,
+				};
+
+				foreach (var item in lbDepartmentEmployees.Items)
+				{
+					var user = (User)item;
+					user.Department?.Employees.Remove(user);
+					newDepartment.Employees.Add(user);
+					user.Department = newDepartment;
+				}
+
+				Master.Instance.Departments.Add(newDepartment);
+				Department = newDepartment;
+			}
+			else
+			{
+				Department.Name = txtDepartmentName.Text;
+				Department.Description = txtDepartmentDescription.Text;
+
+				foreach (var employee in Department.Employees)
+				{
+					employee.Department = null;
+				}
+
+				Department.Employees.Clear();
+
+				foreach (var item in lbDepartmentEmployees.Items)
+				{
+					var user = (User)item;
+					Department.Employees.Add(user);
+					user.Department = Department;
+				}
+			}
+
+
+			DialogResult = DialogResult.OK;
+		}
+
+		private void DlgDepartment_Load(object sender, EventArgs e)
+		{
+			if (Department != null)
+			{
+				txtDepartmentName.Text = Department.Name;
+				txtDepartmentDescription.Text = Department.Description;
+				LoadEmployees(lbDepartmentEmployees, Department.Employees);
+			}
+
+			LoadEmployees(lbAllEmployees, Master.Instance.Users);
+		}
+	}
 }

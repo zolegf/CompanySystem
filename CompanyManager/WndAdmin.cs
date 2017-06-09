@@ -11,78 +11,98 @@ using System.Windows.Forms;
 
 namespace CompanyManager
 {
-    public partial class WndAdmin : Form
-    {
-        public WndAdmin()
-        {
-            InitializeComponent();
-            //LoadUsers();
+	public partial class WndAdmin : Form
+	{
+		public WndAdmin()
+		{
+			InitializeComponent();
 
-        }
+			Text = Master.Instance.WindowTitle;
 
-        //private void LoadUsers()
-        //{
-        //    listUsers.Items.Clear();
-        //    foreach (var item in Master.Instance.Users)
-        //    {
-        //        if (item is Admin)
-        //            continue;
+			LoadDepartments();
+		}
 
-        //        listUsers.Items.Add(item);
-        //    }
-        //}
+		//private void LoadUsers()
+		//{
+		//    listUsers.Items.Clear();
+		//    foreach (var item in Master.Instance.Users)
+		//    {
+		//        if (item is Admin)
+		//            continue;
 
-        //private void LoadDepartments()
-        //{
-        //    listDepartments.Items.Clear();
-        //    foreach (var item in Master.Instance.Departments)
-        //    {
-        //        listDepartments.Items.Add(item);
-        //    }
+		//        listUsers.Items.Add(item);
+		//    }
+		//}
 
-        //}
+		private void LoadDepartments()
+		{
+			listDepartments.Items.Clear();
+			foreach (var item in Master.Instance.Departments)
+			{
+				AddDepartment(item);
+			}
+		}
 
-        //private void listUsers_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    txtName.Text = ((User)listUsers.SelectedItem).FirstName;
-        //    txtLastName.Text = ((User)listUsers.SelectedItem).LastName;
-        //    txtUsername.Text = ((User)listUsers.SelectedItem).Username;
-        //    txtPassword.Text = ((User)listUsers.SelectedItem).Password;
-        //    txtDepartment.Text = ((User)listUsers.SelectedItem).Department.Name;
-        //}
+		private void btnEditDeaprtment_Click(object sender, EventArgs e)
+		{
+			var dlgDepartment = new DlgDepartment
+			{
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent,
+				Department = listDepartments.SelectedItems[0]?.Tag as Department,
+			};			
 
-        //private void onSaveChanges(object sender, EventArgs e)
-        //{
-        //    ((User)listUsers.SelectedItem).FirstName = txtName.Text;
-        //    ((User)listUsers.SelectedItem).LastName = txtLastName.Text;
-        //    ((User)listUsers.SelectedItem).Username = txtUsername.Text;
-        //    ((User)listUsers.SelectedItem).Password = txtPassword.Text;
-        //    ((User)listUsers.SelectedItem).Department.Name = txtDepartment.Text;
+			if (dlgDepartment.ShowDialog() == DialogResult.OK)
+			{
+				Master.Instance.Departments.Remove(dlgDepartment.Department);
+				Master.Instance.Departments.Add(dlgDepartment.Department);
+				LoadDepartments();
+			}
+		}
 
-        //    Master.Instance.SaveChanges();
-        //}
+		private void btnAddDepartment_Click(object sender, EventArgs e)
+		{
+			var dlgDepartment = new DlgDepartment
+			{
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent
+			};
 
-        //private void onDeleteUser(object sender, EventArgs e)
-        //{
-            
-        //    Master.Instance.Users.Remove((User)listUsers.SelectedItem);
-            
-        //    Master.Instance.SaveChanges();
-        //}
+			if (dlgDepartment.ShowDialog() == DialogResult.OK)
+			{
+				AddDepartment(dlgDepartment.Department);
+				Master.Instance.Departments.Add(dlgDepartment.Department);
+			}
+		}
 
-        //private void onSelectedItem(object sender, EventArgs e)
-        //{
-        //    txtBoxDepartmentDescription.Text = ((Department)listDepartments.SelectedItem).Description;
-        //}
+		private void btnDeleteDeaprtment_Click(object sender, EventArgs e)
+		{
+			var selected = listDepartments.SelectedItems[0];
+			if (selected != null)
+			{
+				listDepartments.Items.Remove(selected);
+				Master.Instance.Departments.Remove((Department)selected.Tag);
+			}
+		}
+		
+		private void AddDepartment(Department item)
+		{
+			var lvItem = new ListViewItem(new string[] {
+					item.Id.ToString(),
+					item.Name,
+					item.Description});
 
-        //private void onClick(object sender, EventArgs e)
-        //{
-        //    var dlgDepartment = new DlgDepartment();
-        //    if (dlgDepartment.ShowDialog() == DialogResult.OK)
-        //    {
-        //        // osvezi listu
-        //        this.LoadDepartments();
-        //    }
-        //}
-    }
+			lvItem.Tag = item;
+			listDepartments.Items.Add(lvItem);
+		}
+
+		private void listDepartments_DoubleClick(object sender, EventArgs e)
+		{
+			var selected = listDepartments.SelectedItems[0];
+			if (selected != null)
+			{
+				btnEditDeaprtment_Click(this, e);
+			}
+		}
+	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace CompanyManager
 {
-    partial class Main
+    partial class WndEmployee
     {
         /// <summary>
         /// Required designer variable.

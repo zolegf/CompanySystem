@@ -1,62 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CompanySystem;
 
 namespace CompanyManager
 {
-    public partial class DlgSignIn : Form
-    {
-        public DlgSignIn()
-        {
-            InitializeComponent();
-        }
+	public partial class DlgSignIn : Form
+	{
+		//private Form _admin = new WndAdmin();
+		//private Form _manager = new WndManager();
+		//private Form _user = new WndMain();
 
-        private void OnSelectedIndexChanged(object sender, EventArgs e)
-        {
+		public DlgSignIn()
+		{
+			InitializeComponent();
+		}
 
-        }
+		private void OnClickSignUp(object sender, EventArgs e)
+		{
+			var SignUp = new DlgSignUp();
+			SignUp.ShowDialog();
+		}
 
-        private void OnClickSignUp(object sender, EventArgs e)
-        {
-            var SignUp = new DlgSignUp();
-            SignUp.ShowDialog();
+		private void onClickLogIn(object sender, EventArgs e)
+		{
+			User user = Master.Instance.Authenticate(txtUsername.Text, txtPassword.Text);
+			if (user == null)
+			{
+				MessageBox.Show("User sa unetim kredencijalima ne postoji u evidenciji!");
+				return;
+			}
 
-            
-        }
+			if (user is Admin)
+			{
+				Hide();
+				new WndAdmin { Owner = this, StartPosition = FormStartPosition.CenterParent }.ShowDialog();
+			}
+			else if (user is Manager)
+			{
+				Hide();
+				new WndManager { Owner = this, StartPosition = FormStartPosition.CenterParent }.ShowDialog();
+			}
+			else
+			{
+				Hide();
+				new WndEmployee { Owner = this, StartPosition = FormStartPosition.CenterParent }.ShowDialog();
+			}
 
-        private void onClickLogIn(object sender, EventArgs e)
-        {
+			Close();
+		}
 
-            var Main = new Main();
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+			Close();
+		}
 
-            User user = Master.Instance.Users.Find(item => item.Username == textBoxUsername.Text);
-            //bool containsManager = Master.Instance.Managers.Any(item => item.Password.Equals(textBoxPassword.Text));
-            //bool contansEmployee = Master.Instance.Employees.Any(item => item.Password.Equals(textBoxPassword.Text));
-            if (user == null)
-            {
-                MessageBox.Show("User sa unetim kredencijalima ne postoji u evidenciji!");
-            }
-            else if (textBoxUsername.Text.Equals("admin") && textBoxPassword.Text.Equals("admin"))
-            {
-                var AdminForm = new WndAdmin();
-                AdminForm.ShowDialog();
-            }
-            else if(user is Manager)
-            {
-                Master.Instance.curentUser = user;
-                var ManagerForm = new WndManager();
-                ManagerForm.ShowDialog();
-            }
-            
-            
-
-        }
-    }
+		private void DlgSignIn_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+				onClickLogIn(this, EventArgs.Empty);
+		}
+	}
 }

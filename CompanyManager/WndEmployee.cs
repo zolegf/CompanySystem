@@ -11,17 +11,15 @@ using System.Windows.Forms;
 
 namespace CompanyManager
 {
-    public partial class Main : Form
+    public partial class WndEmployee : Form
     {
-        public Main()
+        public WndEmployee()
         {
             InitializeComponent();
         }
 
         private void OnLoad(object sender, EventArgs e)
         {
-            
-
             var form1 = new DlgSignIn();
             if (form1.ShowDialog() == DialogResult.Cancel)
             {
@@ -30,7 +28,6 @@ namespace CompanyManager
             }
 
             //lblCurrentUser.Text = Master.Instance.curentUser.Username;
-
         }
         
     }

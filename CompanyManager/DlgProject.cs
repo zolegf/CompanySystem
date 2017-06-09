@@ -16,13 +16,13 @@ namespace CompanyManager
         public DlgProject()
         {
             InitializeComponent();
-            string managerName = Master.Instance.curentUser.FirstName + " " + Master.Instance.curentUser.LastName;
+            string managerName = Master.Instance.CurentUser.FirstName + " " + Master.Instance.CurentUser.LastName;
             txtManager.Text = managerName;
         }
 
         private void onClickOK(object sender, EventArgs e)
         {
-            Manager user = (Manager)Master.Instance.curentUser;
+            Manager user = (Manager)Master.Instance.CurentUser;
             var project = new Project()
             {
                 Id = Master.Instance.NextObjectId,

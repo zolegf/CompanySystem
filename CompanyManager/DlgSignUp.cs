@@ -11,9 +11,9 @@ using CompanySystem;
 
 namespace CompanyManager
 {
-    public partial class SignUp : Form
+    public partial class DlgSignUp : Form
     {
-        public SignUp()
+        public DlgSignUp()
         {
             InitializeComponent();
 

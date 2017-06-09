@@ -1,6 +1,6 @@
 ﻿namespace CompanyManager
 {
-    partial class SignIn
+    partial class DlgSignIn
     {
         /// <summary>
         /// Required designer variable.

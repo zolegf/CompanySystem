@@ -1,6 +1,6 @@
 ﻿namespace CompanyManager
 {
-    partial class ManagerForm
+    partial class WndManager
     {
         /// <summary>
         /// Required designer variable.

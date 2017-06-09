@@ -4,9 +4,9 @@ using CompanySystem;
 
 namespace CompanyManager
 {
-	public partial class ManagerForm : Form
+	public partial class WndManager : Form
 	{
-		public ManagerForm()
+		public WndManager()
 		{
 			InitializeComponent();
 
@@ -37,7 +37,7 @@ namespace CompanyManager
 
 		private void onClickAddNewProject(object sender, EventArgs e)
 		{
-			var projectDlg = new ProjectDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent };
+			var projectDlg = new DlgProject() { Owner = this, StartPosition = FormStartPosition.CenterParent };
 			projectDlg.ShowDialog();
 
 		}
@@ -65,6 +65,7 @@ namespace CompanyManager
                 listTasks.Items.Add(listItem);
 			}
 		}
+
 		private void listProjects_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			var selectedItem = listProjects.SelectedItems[0];
@@ -74,9 +75,10 @@ namespace CompanyManager
 				LoadTaskList(project);
 			}
 		}
+
 		private void onClickAddNewTask(object sender, EventArgs e)
 		{
-			var taskDlg = new TaskDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent };
+			var taskDlg = new DlgTaskDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent };
 			if (taskDlg.ShowDialog() == DialogResult.OK)
 			{
 				var task = (Task)taskDlg.Tag;
@@ -94,6 +96,7 @@ namespace CompanyManager
 				listTasks.Items.Add(listItem);
 			}
 		}
+
 		private void onClickDelete(object sender, EventArgs e)
 		{
 			Manager user = (Manager)Master.Instance.curentUser;
@@ -106,11 +109,12 @@ namespace CompanyManager
 			}
 			Master.Instance.SaveChanges();
 		}
+
 		private void onClickEdit(object sender, EventArgs e)
 		{
 			var selectedItem = listProjects.SelectedItems[0];
 			var project = (Project)selectedItem.Tag;
-			var projectDlg = new ProjectDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent };
+			var projectDlg = new DlgProject() { Owner = this, StartPosition = FormStartPosition.CenterParent };
 			projectDlg.ShowDialog();
 
 
@@ -119,7 +123,7 @@ namespace CompanyManager
 
         private void btnEditTask_Click(object sender, EventArgs e)
         {
-            var taskDlg = new TaskDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent, Task = (Task)listTasks.SelectedItems[0].Tag };
+            var taskDlg = new DlgTaskDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent, Task = (Task)listTasks.SelectedItems[0].Tag };
             if (taskDlg.ShowDialog() == DialogResult.OK)
             {
                 listTasks.Refresh();

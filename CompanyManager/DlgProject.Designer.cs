@@ -1,6 +1,6 @@
 ﻿namespace CompanyManager
 {
-    partial class ProjectDlg
+    partial class DlgProject
     {
         /// <summary>
         /// Required designer variable.

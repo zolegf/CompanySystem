@@ -9,7 +9,5 @@ namespace CompanySystem
     [Serializable]
     public class Employee : User
     {
-       
-
     }
 }

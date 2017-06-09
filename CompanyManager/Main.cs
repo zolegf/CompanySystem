@@ -22,7 +22,7 @@ namespace CompanyManager
         {
             
 
-            var form1 = new SignIn();
+            var form1 = new DlgSignIn();
             if (form1.ShowDialog() == DialogResult.Cancel)
             {
                 Close();

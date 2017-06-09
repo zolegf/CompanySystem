@@ -11,9 +11,9 @@ using CompanySystem;
 
 namespace CompanyManager
 {
-    public partial class SignIn : Form
+    public partial class DlgSignIn : Form
     {
-        public SignIn()
+        public DlgSignIn()
         {
             InitializeComponent();
         }
@@ -25,7 +25,7 @@ namespace CompanyManager
 
         private void OnClickSignUp(object sender, EventArgs e)
         {
-            var SignUp = new SignUp();
+            var SignUp = new DlgSignUp();
             SignUp.ShowDialog();
 
             
@@ -45,13 +45,13 @@ namespace CompanyManager
             }
             else if (textBoxUsername.Text.Equals("admin") && textBoxPassword.Text.Equals("admin"))
             {
-                var AdminForm = new AdminForm();
+                var AdminForm = new WndAdmin();
                 AdminForm.ShowDialog();
             }
             else if(user is Manager)
             {
                 Master.Instance.curentUser = user;
-                var ManagerForm = new ManagerForm();
+                var ManagerForm = new WndManager();
                 ManagerForm.ShowDialog();
             }
             

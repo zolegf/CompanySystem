@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanySystem
 {
@@ -30,7 +26,5 @@ namespace CompanySystem
         {
             return Id.GetHashCode();
         }
-
-        // ako a.Equals(b) then a.GetHashCode() == b.GetHashCode();
     }
 }

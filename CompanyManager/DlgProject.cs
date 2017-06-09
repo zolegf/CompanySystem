@@ -11,9 +11,9 @@ using CompanySystem;
 
 namespace CompanyManager
 {
-    public partial class ProjectDlg : Form
+    public partial class DlgProject : Form
     {
-        public ProjectDlg()
+        public DlgProject()
         {
             InitializeComponent();
             string managerName = Master.Instance.curentUser.FirstName + " " + Master.Instance.curentUser.LastName;

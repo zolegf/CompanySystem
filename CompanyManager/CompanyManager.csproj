@@ -45,11 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminForm.cs">
+    <Compile Include="WndAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminForm.Designer.cs">
-      <DependentUpon>AdminForm.cs</DependentUpon>
+    <Compile Include="WndAdmin.Designer.cs">
+      <DependentUpon>WndAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="DlgDepartment.cs">
       <SubType>Form</SubType>
@@ -57,23 +57,23 @@
     <Compile Include="DlgDepartment.Designer.cs">
       <DependentUpon>DlgDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagerForm.cs">
+    <Compile Include="WndManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManagerForm.Designer.cs">
-      <DependentUpon>ManagerForm.cs</DependentUpon>
+    <Compile Include="WndManager.Designer.cs">
+      <DependentUpon>WndManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectDlg.cs">
+    <Compile Include="DlgProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectDlg.Designer.cs">
-      <DependentUpon>ProjectDlg.cs</DependentUpon>
+    <Compile Include="DlgProject.Designer.cs">
+      <DependentUpon>DlgProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="SignIn.cs">
+    <Compile Include="DlgSignIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SignIn.Designer.cs">
-      <DependentUpon>SignIn.cs</DependentUpon>
+    <Compile Include="DlgSignIn.Designer.cs">
+      <DependentUpon>DlgSignIn.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -83,32 +83,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignUp.cs">
+    <Compile Include="DlgSignUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SignUp.Designer.cs">
-      <DependentUpon>SignUp.cs</DependentUpon>
+    <Compile Include="DlgSignUp.Designer.cs">
+      <DependentUpon>DlgSignUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="TaskDlg.cs">
+    <Compile Include="DlgTaskDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TaskDlg.Designer.cs">
-      <DependentUpon>TaskDlg.cs</DependentUpon>
+    <Compile Include="DlgTaskDlg.Designer.cs">
+      <DependentUpon>DlgTaskDlg.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AdminForm.resx">
-      <DependentUpon>AdminForm.cs</DependentUpon>
+    <EmbeddedResource Include="WndAdmin.resx">
+      <DependentUpon>WndAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DlgDepartment.resx">
       <DependentUpon>DlgDepartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagerForm.resx">
-      <DependentUpon>ManagerForm.cs</DependentUpon>
+    <EmbeddedResource Include="WndManager.resx">
+      <DependentUpon>WndManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectDlg.resx">
-      <DependentUpon>ProjectDlg.cs</DependentUpon>
+    <EmbeddedResource Include="DlgProject.resx">
+      <DependentUpon>DlgProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SignIn.resx">
-      <DependentUpon>SignIn.cs</DependentUpon>
+    <EmbeddedResource Include="DlgSignIn.resx">
+      <DependentUpon>DlgSignIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -122,11 +122,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SignUp.resx">
-      <DependentUpon>SignUp.cs</DependentUpon>
+    <EmbeddedResource Include="DlgSignUp.resx">
+      <DependentUpon>DlgSignUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TaskDlg.resx">
-      <DependentUpon>TaskDlg.cs</DependentUpon>
+    <EmbeddedResource Include="DlgTaskDlg.resx">
+      <DependentUpon>DlgTaskDlg.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -6,22 +6,9 @@ namespace CompanyManager
 {
 	public partial class DlgSignIn : Form
 	{
-		//private Form _admin = new WndAdmin();
-		//private Form _manager = new WndManager();
-		//private Form _user = new WndMain();
-
 		public DlgSignIn()
 		{
 			InitializeComponent();
-		}
-
-		private void OnClickSignUp(object sender, EventArgs e)
-		{
-			var signUp = new DlgUser { Text = "User sign up" };
-			if (signUp.ShowDialog() == DialogResult.OK)
-			{
-				Master.Instance.Users.Add(signUp.User);
-			}
 		}
 
 		private void onClickLogIn(object sender, EventArgs e)
@@ -66,6 +53,21 @@ namespace CompanyManager
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private void lSignUp_Click(object sender, EventArgs e)
+		{
+			var signUp = new DlgUser
+			{
+				Text = "User sign up",
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent
+			};
+
+			if (signUp.ShowDialog() == DialogResult.OK)
+			{
+				Master.Instance.Users.Add(signUp.User);
+			}
 		}
 	}
 }

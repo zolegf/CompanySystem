@@ -34,7 +34,7 @@
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.lblUsername = new System.Windows.Forms.Label();
 			this.lblPassword = new System.Windows.Forms.Label();
-			this.btnSignUpOnLogin = new System.Windows.Forms.Button();
+			this.lSignUp = new System.Windows.Forms.LinkLabel();
 			this.SuspendLayout();
 			// 
 			// txtUsername
@@ -93,16 +93,16 @@
 			this.lblPassword.TabIndex = 4;
 			this.lblPassword.Text = "Passsword";
 			// 
-			// btnSignUpOnLogin
+			// lSignUp
 			// 
-			this.btnSignUpOnLogin.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-			this.btnSignUpOnLogin.Location = new System.Drawing.Point(207, 200);
-			this.btnSignUpOnLogin.Name = "btnSignUpOnLogin";
-			this.btnSignUpOnLogin.Size = new System.Drawing.Size(75, 23);
-			this.btnSignUpOnLogin.TabIndex = 4;
-			this.btnSignUpOnLogin.Text = "Sign Up";
-			this.btnSignUpOnLogin.UseVisualStyleBackColor = true;
-			this.btnSignUpOnLogin.Click += new System.EventHandler(this.OnClickSignUp);
+			this.lSignUp.AutoSize = true;
+			this.lSignUp.Location = new System.Drawing.Point(250, 208);
+			this.lSignUp.Name = "lSignUp";
+			this.lSignUp.Size = new System.Drawing.Size(100, 13);
+			this.lSignUp.TabIndex = 5;
+			this.lSignUp.TabStop = true;
+			this.lSignUp.Text = "New user? Sign up!";
+			this.lSignUp.Click += new System.EventHandler(this.lSignUp_Click);
 			// 
 			// DlgSignIn
 			// 
@@ -110,7 +110,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(362, 230);
-			this.Controls.Add(this.btnSignUpOnLogin);
+			this.Controls.Add(this.lSignUp);
 			this.Controls.Add(this.lblPassword);
 			this.Controls.Add(this.lblUsername);
 			this.Controls.Add(this.btnCancel);
@@ -135,7 +135,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Button btnSignUpOnLogin;
-    }
+		private System.Windows.Forms.LinkLabel lSignUp;
+	}
 }
 

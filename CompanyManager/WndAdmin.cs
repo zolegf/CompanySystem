@@ -1,12 +1,6 @@
 ﻿using CompanySystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CompanyManager
@@ -27,7 +21,13 @@ namespace CompanyManager
 		private void LoadEmployees()
 		{
 			listEmployees.Items.Clear();
-			foreach (var item in Master.Instance.Users)
+
+			var users = Master.Instance.Users;
+			var selectedDepartment = cbDepartments.SelectedItem as Department;
+			if (selectedDepartment != null)
+				users = Master.Instance.Users.Where(u => u.Department == selectedDepartment).ToList();
+
+			foreach (var item in users)
 			{
 				if (item is Employee)
 					AddUser(listEmployees, item);
@@ -37,7 +37,13 @@ namespace CompanyManager
 		private void LoadManagers()
 		{
 			listManagers.Items.Clear();
-			foreach (var item in Master.Instance.Users)
+
+			var users = Master.Instance.Users;
+			var selectedDepartment = cbDepartments.SelectedItem as Department;
+			if (selectedDepartment != null)
+				users = Master.Instance.Users.Where(u => u.Department == selectedDepartment).ToList();
+
+			foreach (var item in users)
 			{
 				if (item is Manager)
 					AddUser(listManagers, item);
@@ -69,21 +75,30 @@ namespace CompanyManager
 			}
 		}
 
-		private void btnEditDeaprtment_Click(object sender, EventArgs e)
+		private void btnEditDepartment_Click(object sender, EventArgs e)
 		{
+			var selectedItem = listDepartments.SelectedItems[0];
+			var selectedDepartment = (Department)selectedItem.Tag;
 			var dlgDepartment = new DlgDepartment
 			{
 				Owner = this,
 				StartPosition = FormStartPosition.CenterParent,
-				Department = listDepartments.SelectedItems[0]?.Tag as Department,
+				Department = selectedDepartment,
 			};
 
 			if (dlgDepartment.ShowDialog() == DialogResult.OK)
 			{
 				Master.Instance.Departments.Remove(dlgDepartment.Department);
 				Master.Instance.Departments.Add(dlgDepartment.Department);
-				LoadDepartments();
+
+				selectedItem.Tag = dlgDepartment.Department;
+				selectedItem.SubItems[0].Text = dlgDepartment.Department.Id.ToString();
+				selectedItem.SubItems[1].Text = dlgDepartment.Department.Name;
+				selectedItem.SubItems[2].Text = dlgDepartment.Department.Description;
+
+				listDepartments.Refresh();
 				LoadEmployees();
+				LoadManagers();
 			}
 		}
 
@@ -99,6 +114,9 @@ namespace CompanyManager
 			{
 				AddDepartment(dlgDepartment.Department);
 				Master.Instance.Departments.Add(dlgDepartment.Department);
+				cbDepartments.Items.Add(dlgDepartment.Department);
+				LoadEmployees();
+				LoadManagers();
 			}
 		}
 
@@ -128,8 +146,7 @@ namespace CompanyManager
 			var lvItem = new ListViewItem(
 				new string[] {
 					item.Id.ToString(),
-					item.FirstName,
-					item.LastName,
+					item.ToString(),
 					item.Department.Name
 				});
 
@@ -142,14 +159,103 @@ namespace CompanyManager
 			var selected = listDepartments.SelectedItems[0];
 			if (selected != null)
 			{
-				btnEditDeaprtment_Click(this, e);
+				btnEditDepartment_Click(this, e);
 			}
 		}
 
 		private void listDepartments_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			btnDeleteDepartment.Enabled = listDepartments.SelectedItems.Count > 0;
-			btnEditDeaprtment.Enabled = listDepartments.SelectedItems.Count > 0;
+			btnEditDepartment.Enabled = listDepartments.SelectedItems.Count > 0;
+		}
+
+		private void cbDepartments_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			LoadEmployees();
+			LoadManagers();
+		}
+
+		private void btnClearFilter_Click(object sender, EventArgs e)
+		{
+			cbDepartments.SelectedItem = null;
+		}
+
+		private void btnPromote_Click(object sender, EventArgs e)
+		{
+			var selectedEmployee = listEmployees.SelectedItems[0];
+			var employee = (Employee)selectedEmployee.Tag;
+			var dlg = new DlgChooseDepartment(employee)
+			{
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent
+			};
+
+			if (dlg.ShowDialog() == DialogResult.OK)
+			{
+				PromoteEmployee(selectedEmployee, dlg.Department);
+			}
+		}
+
+		private void PromoteEmployee(ListViewItem employeeItem, Department department)
+		{
+			var employee = (Employee)employeeItem.Tag;
+			listEmployees.Items.Remove(employeeItem);
+
+			var manager = new Manager
+			{
+				FirstName = employee.FirstName,
+				LastName = employee.LastName,
+				DateOfBirth = employee.DateOfBirth,
+				Gender = employee.Gender,
+				Username = employee.Username,
+				Password = employee.Password,
+				Department = department
+			};
+
+			Master.Instance.Users.Remove(employee);
+			employee.Department.Employees.Remove(employee);
+
+			Master.Instance.Users.Add(manager);
+			manager.Department.Employees.Add(manager);
+
+			AddUser(listManagers, manager);
+		}
+
+		private void listEmployees_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			btnPromote.Enabled = listEmployees.SelectedItems.Count > 0;
+		}
+
+		private void list_DoubleClick(object sender, EventArgs e)
+		{
+			var list = (ListView)sender;
+
+			if (list.SelectedItems.Count == 0)
+				return;
+
+			var selectedItem = list.SelectedItems[0];
+			var selectedUser = (User)selectedItem.Tag;
+			bool wasUser = selectedUser is User;
+
+			var dlg = new DlgUser
+			{
+				Text = "Edit user",
+				User = selectedUser,
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent
+			};
+
+			if (dlg.ShowDialog() == DialogResult.OK)
+			{
+				if (dlg.User is Manager && wasUser)
+				{
+					PromoteEmployee(selectedItem, dlg.User.Department);
+				}
+
+				selectedItem.SubItems[0].Text = dlg.User.Department.Id.ToString();
+				selectedItem.SubItems[1].Text = dlg.User.ToString();
+				selectedItem.SubItems[2].Text = dlg.User.Department.Name;
+			}
 		}
 	}
 }

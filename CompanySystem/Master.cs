@@ -41,8 +41,9 @@ namespace CompanySystem
 				FirstName = "Zoran",
 				LastName = "Govedar",
 				Username = "zoran",
-				Password = "zoran"
-			};
+				Password = "zoran",
+				DateOfBirth = DateTime.Today.Subtract(TimeSpan.FromDays(33 * 365))
+		};
 			Users.Add(manager);
 
 			var employee = new Employee()
@@ -51,8 +52,9 @@ namespace CompanySystem
 				FirstName = "Goran",
 				LastName = "Boric",
 				Username = "goran",
-				Password = "goran"
-			};
+				Password = "goran",
+				DateOfBirth = DateTime.Today.Subtract(TimeSpan.FromDays(35 * 365))
+		};
 			Users.Add(employee);
 
 			var employee2 = new Employee()
@@ -61,7 +63,8 @@ namespace CompanySystem
 				FirstName = "Sima",
 				LastName = "Simic",
 				Username = "simke",
-				Password = "simke"
+				Password = "simke",
+				DateOfBirth = DateTime.Today.Subtract(TimeSpan.FromDays(25 * 365))
 			};
 			Users.Add(employee2);
 
@@ -102,13 +105,20 @@ namespace CompanySystem
 				new Department() { Id = NextObjectId, Name = "Sales", Description = "Seling products..." },
 			});
 
-			manager.Department = Departments.Find(d => d.Name.Equals("Accounting"));
-			employee.Department = Departments.Find(d => d.Name.Equals("Accounting"));
-			employee2.Department = Departments.Find(d => d.Name.Equals("Accounting"));
+			var accountingDepartment = Departments.Find(d => d.Name.Equals("Accounting"));
+			manager.Department = accountingDepartment;
+			employee.Department = accountingDepartment;
+			employee2.Department = accountingDepartment;
+
+			accountingDepartment.Employees.AddRange(new User[] { manager, employee, employee2 });
 		}
 
 		private static Master Load()
 		{
+			return new Master(); //!! DEBUG !!!!
+
+			//////////////////////////////////////////////////
+
 			if (!File.Exists(CompanyFile))
 			{
 				return new Master();
@@ -136,7 +146,6 @@ namespace CompanySystem
 
 				return _master;
 			}
-
 		}
 
 		public User Authenticate(string userName, string password)

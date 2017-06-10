@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DlgChooseDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DlgChooseDepartment.Designer.cs">
+      <DependentUpon>DlgChooseDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="WndAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,11 +89,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DlgSignUp.cs">
+    <Compile Include="DlgUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DlgSignUp.Designer.cs">
-      <DependentUpon>DlgSignUp.cs</DependentUpon>
+    <Compile Include="DlgUser.Designer.cs">
+      <DependentUpon>DlgUser.cs</DependentUpon>
     </Compile>
     <Compile Include="DlgTaskDlg.cs">
       <SubType>Form</SubType>
@@ -95,6 +101,9 @@
     <Compile Include="DlgTaskDlg.Designer.cs">
       <DependentUpon>DlgTaskDlg.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DlgChooseDepartment.resx">
+      <DependentUpon>DlgChooseDepartment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WndAdmin.resx">
       <DependentUpon>WndAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,8 +131,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DlgSignUp.resx">
-      <DependentUpon>DlgSignUp.cs</DependentUpon>
+    <EmbeddedResource Include="DlgUser.resx">
+      <DependentUpon>DlgUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DlgTaskDlg.resx">
       <DependentUpon>DlgTaskDlg.cs</DependentUpon>

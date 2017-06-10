@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			this.btnAddDepartment = new System.Windows.Forms.Button();
-			this.btnEditDeaprtment = new System.Windows.Forms.Button();
+			this.btnEditDepartment = new System.Windows.Forms.Button();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,21 +44,20 @@
 			this.btnDeleteDepartment = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.cbDepartments = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.btnPromote = new System.Windows.Forms.Button();
-			this.listEmployees = new System.Windows.Forms.ListView();
-			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.listManagers = new System.Windows.Forms.ListView();
 			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.listEmployees = new System.Windows.Forms.ListView();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btnClearFilter = new System.Windows.Forms.Button();
+			this.btnPromote = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbDepartments = new System.Windows.Forms.ComboBox();
 			this.menuStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -74,16 +73,16 @@
 			this.btnAddDepartment.UseVisualStyleBackColor = true;
 			this.btnAddDepartment.Click += new System.EventHandler(this.btnAddDepartment_Click);
 			// 
-			// btnEditDeaprtment
+			// btnEditDepartment
 			// 
-			this.btnEditDeaprtment.Enabled = false;
-			this.btnEditDeaprtment.Location = new System.Drawing.Point(305, 122);
-			this.btnEditDeaprtment.Name = "btnEditDeaprtment";
-			this.btnEditDeaprtment.Size = new System.Drawing.Size(119, 23);
-			this.btnEditDeaprtment.TabIndex = 10;
-			this.btnEditDeaprtment.Text = "Edit";
-			this.btnEditDeaprtment.UseVisualStyleBackColor = true;
-			this.btnEditDeaprtment.Click += new System.EventHandler(this.btnEditDeaprtment_Click);
+			this.btnEditDepartment.Enabled = false;
+			this.btnEditDepartment.Location = new System.Drawing.Point(305, 122);
+			this.btnEditDepartment.Name = "btnEditDepartment";
+			this.btnEditDepartment.Size = new System.Drawing.Size(119, 23);
+			this.btnEditDepartment.TabIndex = 10;
+			this.btnEditDepartment.Text = "Edit";
+			this.btnEditDepartment.UseVisualStyleBackColor = true;
+			this.btnEditDepartment.Click += new System.EventHandler(this.btnEditDepartment_Click);
 			// 
 			// menuStrip1
 			// 
@@ -91,7 +90,7 @@
             this.fileToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(621, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(607, 24);
 			this.menuStrip1.TabIndex = 11;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -183,7 +182,7 @@
 			// 
 			this.groupBox1.Controls.Add(this.listDepartments);
 			this.groupBox1.Controls.Add(this.btnAddDepartment);
-			this.groupBox1.Controls.Add(this.btnEditDeaprtment);
+			this.groupBox1.Controls.Add(this.btnEditDepartment);
 			this.groupBox1.Controls.Add(this.btnDeleteDepartment);
 			this.groupBox1.Location = new System.Drawing.Point(12, 27);
 			this.groupBox1.Name = "groupBox1";
@@ -196,6 +195,7 @@
 			// 
 			this.groupBox2.Controls.Add(this.listManagers);
 			this.groupBox2.Controls.Add(this.listEmployees);
+			this.groupBox2.Controls.Add(this.btnClearFilter);
 			this.groupBox2.Controls.Add(this.btnPromote);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.label2);
@@ -208,86 +208,11 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Employees";
 			// 
-			// cbDepartments
-			// 
-			this.cbDepartments.FormattingEnabled = true;
-			this.cbDepartments.Location = new System.Drawing.Point(95, 27);
-			this.cbDepartments.Name = "cbDepartments";
-			this.cbDepartments.Size = new System.Drawing.Size(189, 21);
-			this.cbDepartments.TabIndex = 1;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(16, 30);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(62, 13);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "Department";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(16, 66);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(58, 13);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Employees";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(302, 66);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(54, 13);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "Managers";
-			// 
-			// btnPromote
-			// 
-			this.btnPromote.Location = new System.Drawing.Point(209, 61);
-			this.btnPromote.Name = "btnPromote";
-			this.btnPromote.Size = new System.Drawing.Size(75, 23);
-			this.btnPromote.TabIndex = 3;
-			this.btnPromote.Text = "Promote =>";
-			this.btnPromote.UseVisualStyleBackColor = true;
-			// 
-			// listEmployees
-			// 
-			this.listEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader7});
-			this.listEmployees.FullRowSelect = true;
-			this.listEmployees.Location = new System.Drawing.Point(19, 92);
-			this.listEmployees.Name = "listEmployees";
-			this.listEmployees.Size = new System.Drawing.Size(265, 133);
-			this.listEmployees.TabIndex = 4;
-			this.listEmployees.UseCompatibleStateImageBehavior = false;
-			this.listEmployees.View = System.Windows.Forms.View.Details;
-			// 
-			// columnHeader1
-			// 
-			this.columnHeader1.Text = "Id";
-			this.columnHeader1.Width = 25;
-			// 
-			// columnHeader2
-			// 
-			this.columnHeader2.Text = "First Name";
-			this.columnHeader2.Width = 70;
-			// 
-			// columnHeader3
-			// 
-			this.columnHeader3.Text = "Last Name";
-			this.columnHeader3.Width = 70;
-			// 
 			// listManagers
 			// 
 			this.listManagers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6,
             this.columnHeader8});
 			this.listManagers.FullRowSelect = true;
 			this.listManagers.Location = new System.Drawing.Point(305, 92);
@@ -304,29 +229,107 @@
 			// 
 			// columnHeader5
 			// 
-			this.columnHeader5.Text = "First Name";
-			this.columnHeader5.Width = 80;
-			// 
-			// columnHeader6
-			// 
-			this.columnHeader6.Text = "Last Name";
-			this.columnHeader6.Width = 70;
-			// 
-			// columnHeader7
-			// 
-			this.columnHeader7.Text = "Department";
-			this.columnHeader7.Width = 80;
+			this.columnHeader5.Text = "Name";
+			this.columnHeader5.Width = 98;
 			// 
 			// columnHeader8
 			// 
 			this.columnHeader8.Text = "Department";
-			this.columnHeader8.Width = 70;
+			this.columnHeader8.Width = 107;
+			// 
+			// listEmployees
+			// 
+			this.listEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader7});
+			this.listEmployees.FullRowSelect = true;
+			this.listEmployees.Location = new System.Drawing.Point(19, 92);
+			this.listEmployees.Name = "listEmployees";
+			this.listEmployees.Size = new System.Drawing.Size(265, 133);
+			this.listEmployees.TabIndex = 4;
+			this.listEmployees.UseCompatibleStateImageBehavior = false;
+			this.listEmployees.View = System.Windows.Forms.View.Details;
+			this.listEmployees.SelectedIndexChanged += new System.EventHandler(this.listEmployees_SelectedIndexChanged);
+			this.listEmployees.DoubleClick += new System.EventHandler(this.list_DoubleClick);
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "Id";
+			this.columnHeader1.Width = 25;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "Name";
+			this.columnHeader2.Width = 92;
+			// 
+			// columnHeader7
+			// 
+			this.columnHeader7.Text = "Department";
+			this.columnHeader7.Width = 120;
+			// 
+			// btnClearFilter
+			// 
+			this.btnClearFilter.Location = new System.Drawing.Point(305, 27);
+			this.btnClearFilter.Name = "btnClearFilter";
+			this.btnClearFilter.Size = new System.Drawing.Size(90, 21);
+			this.btnClearFilter.TabIndex = 3;
+			this.btnClearFilter.Text = "Clear filter";
+			this.btnClearFilter.UseVisualStyleBackColor = true;
+			this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
+			// 
+			// btnPromote
+			// 
+			this.btnPromote.Enabled = false;
+			this.btnPromote.Location = new System.Drawing.Point(209, 61);
+			this.btnPromote.Name = "btnPromote";
+			this.btnPromote.Size = new System.Drawing.Size(75, 23);
+			this.btnPromote.TabIndex = 3;
+			this.btnPromote.Text = "Promote =>";
+			this.btnPromote.UseVisualStyleBackColor = true;
+			this.btnPromote.Click += new System.EventHandler(this.btnPromote_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(302, 66);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(54, 13);
+			this.label3.TabIndex = 2;
+			this.label3.Text = "Managers";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(16, 66);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(58, 13);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "Employees";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(16, 30);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(62, 13);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "Department";
+			// 
+			// cbDepartments
+			// 
+			this.cbDepartments.FormattingEnabled = true;
+			this.cbDepartments.Location = new System.Drawing.Point(95, 27);
+			this.cbDepartments.Name = "cbDepartments";
+			this.cbDepartments.Size = new System.Drawing.Size(189, 21);
+			this.cbDepartments.TabIndex = 1;
+			this.cbDepartments.SelectedIndexChanged += new System.EventHandler(this.cbDepartments_SelectedIndexChanged);
 			// 
 			// WndAdmin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(621, 471);
+			this.ClientSize = new System.Drawing.Size(607, 471);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.menuStrip1);
@@ -346,7 +349,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnAddDepartment;
-        private System.Windows.Forms.Button btnEditDeaprtment;
+        private System.Windows.Forms.Button btnEditDepartment;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -370,11 +373,10 @@
 		private System.Windows.Forms.ListView listManagers;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.ColumnHeader columnHeader6;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
-		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.Button btnClearFilter;
 	}
 }

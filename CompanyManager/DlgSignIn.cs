@@ -17,8 +17,11 @@ namespace CompanyManager
 
 		private void OnClickSignUp(object sender, EventArgs e)
 		{
-			var SignUp = new DlgSignUp();
-			SignUp.ShowDialog();
+			var signUp = new DlgUser { Text = "User sign up" };
+			if (signUp.ShowDialog() == DialogResult.OK)
+			{
+				Master.Instance.Users.Add(signUp.User);
+			}
 		}
 
 		private void onClickLogIn(object sender, EventArgs e)

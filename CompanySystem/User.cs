@@ -2,6 +2,12 @@
 
 namespace CompanySystem
 {
+	public enum Gender
+	{
+		Male,
+		Female
+	}
+
     [Serializable]
     public class User
     {
@@ -10,11 +16,14 @@ namespace CompanySystem
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public Department Department { get; set; }
+		public DateTime DateOfBirth { get; set; }
+		public Gender Gender { get; set; }
+		public string Name => $"{FirstName} {LastName}";
+		public Department Department { get; set; }
 
         public override string ToString()
         {
-            return $"{FirstName} {LastName}";
+			return Name;
         }
 
         public override bool Equals(object obj)

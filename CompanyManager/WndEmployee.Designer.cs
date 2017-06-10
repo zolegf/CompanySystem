@@ -37,9 +37,7 @@
 			this.ClientSize = new System.Drawing.Size(720, 504);
 			this.Name = "WndEmployee";
 			this.Text = "Main";
-			this.Load += new System.EventHandler(this.OnLoad);
 			this.ResumeLayout(false);
-
         }
 
         #endregion

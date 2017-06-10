@@ -53,7 +53,6 @@
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.btnClearFilter = new System.Windows.Forms.Button();
-			this.btnPromote = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
@@ -196,7 +195,6 @@
 			this.groupBox2.Controls.Add(this.listManagers);
 			this.groupBox2.Controls.Add(this.listEmployees);
 			this.groupBox2.Controls.Add(this.btnClearFilter);
-			this.groupBox2.Controls.Add(this.btnPromote);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.label1);
@@ -221,6 +219,7 @@
 			this.listManagers.TabIndex = 4;
 			this.listManagers.UseCompatibleStateImageBehavior = false;
 			this.listManagers.View = System.Windows.Forms.View.Details;
+			this.listManagers.DoubleClick += new System.EventHandler(this.list_DoubleClick);
 			// 
 			// columnHeader4
 			// 
@@ -250,7 +249,6 @@
 			this.listEmployees.TabIndex = 4;
 			this.listEmployees.UseCompatibleStateImageBehavior = false;
 			this.listEmployees.View = System.Windows.Forms.View.Details;
-			this.listEmployees.SelectedIndexChanged += new System.EventHandler(this.listEmployees_SelectedIndexChanged);
 			this.listEmployees.DoubleClick += new System.EventHandler(this.list_DoubleClick);
 			// 
 			// columnHeader1
@@ -277,17 +275,6 @@
 			this.btnClearFilter.Text = "Clear filter";
 			this.btnClearFilter.UseVisualStyleBackColor = true;
 			this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
-			// 
-			// btnPromote
-			// 
-			this.btnPromote.Enabled = false;
-			this.btnPromote.Location = new System.Drawing.Point(209, 61);
-			this.btnPromote.Name = "btnPromote";
-			this.btnPromote.Size = new System.Drawing.Size(75, 23);
-			this.btnPromote.TabIndex = 3;
-			this.btnPromote.Text = "Promote =>";
-			this.btnPromote.UseVisualStyleBackColor = true;
-			this.btnPromote.Click += new System.EventHandler(this.btnPromote_Click);
 			// 
 			// label3
 			// 
@@ -368,7 +355,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ListView listEmployees;
-		private System.Windows.Forms.Button btnPromote;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.ListView listManagers;
 		private System.Windows.Forms.ColumnHeader columnHeader4;

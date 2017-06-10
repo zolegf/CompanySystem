@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using CompanySystem;
 
@@ -11,8 +12,7 @@ namespace CompanyManager
             InitializeComponent();
 
             cbDepartments.Items.AddRange(Master.Instance.Departments.ToArray());
-			cbGender.Items.Add(Gender.Male);
-			cbGender.Items.Add(Gender.Female);
+			cbGender.Items.AddRange(Enum.GetValues(typeof(Gender)).Cast<object>().ToArray());
         }
 
 		public User User { get; set; }

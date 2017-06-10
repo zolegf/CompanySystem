@@ -4,9 +4,9 @@ using CompanySystem;
 
 namespace CompanyManager
 {
-    public partial class DlgTaskDlg : Form
+    public partial class DlgTask : Form
     {
-        public DlgTaskDlg()
+        public DlgTask()
         {
             InitializeComponent();
         }

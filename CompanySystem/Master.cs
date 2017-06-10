@@ -73,8 +73,8 @@ namespace CompanySystem
 				Id = NextObjectId,
 				Title = "APS",
 				Description = "Sample project for learning purpose.",
-				StartDate = DateTime.Today,
-				EndDate = DateTime.Today.AddDays(10),
+				StartTime = DateTime.Today,
+				EndTime = DateTime.Today.AddDays(10),
 				State = ProjectState.New,
 				Manager = manager
 

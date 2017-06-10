@@ -16,31 +16,44 @@ namespace CompanyManager
 
 		private void LoadProjects(Manager manager)
 		{
-
 			listProjects.Items.Clear();
 
 			foreach (var item in manager.Projects)
 			{
-				var listItem = new ListViewItem(new string[]
-				{
-					item.Id.ToString(),
-					item.Title.ToString(),
-					item.StartDate.ToShortDateString(),
-					item.EndDate.ToShortDateString(),
-					item.State.ToString(),
-					item.Description
-				});
-
-				listItem.Tag = item;
-				listProjects.Items.Add(listItem);
+				AddProject(item);
 			}
 		}
 
-		private void onClickAddNewProject(object sender, EventArgs e)
+		private void btnAddProject_Click(object sender, EventArgs e)
 		{
-			var projectDlg = new DlgProject() { Owner = this, StartPosition = FormStartPosition.CenterParent };
-			projectDlg.ShowDialog();
+			var projectDlg = new DlgProject()
+			{
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent
+			};
 
+			if (projectDlg.ShowDialog() == DialogResult.OK)
+			{
+				Master.Instance.Projects.Add(projectDlg.Project);
+				AddProject(projectDlg.Project);
+			}
+		}
+
+		void AddProject(Project item)
+		{
+			var listItem = new ListViewItem(new string[]
+				{
+					item.Id.ToString(),
+					item.Title.ToString(),
+					item.StartTime.ToShortDateString(),
+					item.EndTime.ToShortDateString(),
+					item.State.ToString(),
+					item.Cost.ToString(),
+					item.Description
+				});
+
+			listItem.Tag = item;
+			listProjects.Items.Add(listItem);
 		}
 
 		private void LoadTaskList(Project project)
@@ -62,8 +75,8 @@ namespace CompanyManager
 
 				});
 
-                listItem.Tag = item;
-                listTasks.Items.Add(listItem);
+				listItem.Tag = item;
+				listTasks.Items.Add(listItem);
 			}
 		}
 
@@ -80,9 +93,9 @@ namespace CompanyManager
 			}
 		}
 
-		private void onClickAddNewTask(object sender, EventArgs e)
+		private void btnAddTask_Click(object sender, EventArgs e)
 		{
-			var taskDlg = new DlgTaskDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent };
+			var taskDlg = new DlgTask() { Owner = this, StartPosition = FormStartPosition.CenterParent };
 			if (taskDlg.ShowDialog() == DialogResult.OK)
 			{
 				var task = (Task)taskDlg.Tag;
@@ -101,7 +114,7 @@ namespace CompanyManager
 			}
 		}
 
-		private void onClickDelete(object sender, EventArgs e)
+		private void btnDeleteProject_Click(object sender, EventArgs e)
 		{
 			Manager user = (Manager)Master.Instance.CurentUser;
 			var selectedItem = listProjects.SelectedItems[0];
@@ -114,21 +127,46 @@ namespace CompanyManager
 			Master.Instance.SaveChanges();
 		}
 
-		private void onClickEdit(object sender, EventArgs e)
+		private void btnEditProject_Click(object sender, EventArgs e)
 		{
 			var selectedItem = listProjects.SelectedItems[0];
 			var project = (Project)selectedItem.Tag;
-			var projectDlg = new DlgProject() { Owner = this, StartPosition = FormStartPosition.CenterParent };
-			projectDlg.ShowDialog();
+			var projectDlg = new DlgProject()
+			{
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent,
+				Project = project
+			};
+
+			if (projectDlg.ShowDialog() == DialogResult.OK)
+			{
+				selectedItem.SubItems[1].Text = project.Title;
+				selectedItem.SubItems[2].Text = project.StartTime.ToShortDateString();
+				selectedItem.SubItems[3].Text = project.EndTime.ToShortDateString();
+				selectedItem.SubItems[4].Text = project.State.ToString();
+				selectedItem.SubItems[5].Text = project.Cost.ToString();
+				selectedItem.SubItems[6].Text = project.Description;
+			}
 		}
 
-        private void btnEditTask_Click(object sender, EventArgs e)
-        {
-            var taskDlg = new DlgTaskDlg() { Owner = this, StartPosition = FormStartPosition.CenterParent, Task = (Task)listTasks.SelectedItems[0].Tag };
-            if (taskDlg.ShowDialog() == DialogResult.OK)
-            {
-                listTasks.Refresh();
-            }
-        }
-    }
+		private void btnEditTask_Click(object sender, EventArgs e)
+		{
+			var taskDlg = new DlgTask() { Owner = this, StartPosition = FormStartPosition.CenterParent, Task = (Task)listTasks.SelectedItems[0].Tag };
+			if (taskDlg.ShowDialog() == DialogResult.OK)
+			{
+				listTasks.Refresh();
+			}
+		}
+
+		private void listProjects_DoubleClick(object sender, EventArgs e)
+		{
+			if (listProjects.SelectedItems.Count > 0)
+				btnEditProject_Click(this, e);
+		}
+
+		private void groupBox1_Enter(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

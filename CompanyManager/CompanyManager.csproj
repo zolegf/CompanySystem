@@ -95,11 +95,11 @@
     <Compile Include="DlgUser.Designer.cs">
       <DependentUpon>DlgUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="DlgTaskDlg.cs">
+    <Compile Include="DlgTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DlgTaskDlg.Designer.cs">
-      <DependentUpon>DlgTaskDlg.cs</DependentUpon>
+    <Compile Include="DlgTask.Designer.cs">
+      <DependentUpon>DlgTask.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DlgChooseDepartment.resx">
       <DependentUpon>DlgChooseDepartment.cs</DependentUpon>
@@ -134,8 +134,8 @@
     <EmbeddedResource Include="DlgUser.resx">
       <DependentUpon>DlgUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DlgTaskDlg.resx">
-      <DependentUpon>DlgTaskDlg.cs</DependentUpon>
+    <EmbeddedResource Include="DlgTask.resx">
+      <DependentUpon>DlgTask.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

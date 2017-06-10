@@ -34,7 +34,7 @@
             "05.06.2017"}, -1);
 			this.btnEditProject = new System.Windows.Forms.Button();
 			this.btnDeleteProject = new System.Windows.Forms.Button();
-			this.btnAddNewProject = new System.Windows.Forms.Button();
+			this.btnAddProject = new System.Windows.Forms.Button();
 			this.listProjects = new System.Windows.Forms.ListView();
 			this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,9 +53,10 @@
 			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.btnEditTask = new System.Windows.Forms.Button();
 			this.btnDeleteTask = new System.Windows.Forms.Button();
-			this.btnAddNewTask = new System.Windows.Forms.Button();
+			this.btnAddTask = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -63,34 +64,34 @@
 			// btnEditProject
 			// 
 			this.btnEditProject.Enabled = false;
-			this.btnEditProject.Location = new System.Drawing.Point(363, 127);
+			this.btnEditProject.Location = new System.Drawing.Point(508, 144);
 			this.btnEditProject.Name = "btnEditProject";
 			this.btnEditProject.Size = new System.Drawing.Size(87, 23);
 			this.btnEditProject.TabIndex = 14;
 			this.btnEditProject.Text = "Edit";
 			this.btnEditProject.UseVisualStyleBackColor = true;
-			this.btnEditProject.Click += new System.EventHandler(this.onClickEdit);
+			this.btnEditProject.Click += new System.EventHandler(this.btnEditProject_Click);
 			// 
 			// btnDeleteProject
 			// 
 			this.btnDeleteProject.Enabled = false;
-			this.btnDeleteProject.Location = new System.Drawing.Point(469, 127);
+			this.btnDeleteProject.Location = new System.Drawing.Point(614, 144);
 			this.btnDeleteProject.Name = "btnDeleteProject";
 			this.btnDeleteProject.Size = new System.Drawing.Size(87, 23);
 			this.btnDeleteProject.TabIndex = 14;
 			this.btnDeleteProject.Text = "Delete";
 			this.btnDeleteProject.UseVisualStyleBackColor = true;
-			this.btnDeleteProject.Click += new System.EventHandler(this.onClickDelete);
+			this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
 			// 
-			// btnAddNewProject
+			// btnAddProject
 			// 
-			this.btnAddNewProject.Location = new System.Drawing.Point(573, 127);
-			this.btnAddNewProject.Name = "btnAddNewProject";
-			this.btnAddNewProject.Size = new System.Drawing.Size(87, 23);
-			this.btnAddNewProject.TabIndex = 14;
-			this.btnAddNewProject.Text = "Add New";
-			this.btnAddNewProject.UseVisualStyleBackColor = true;
-			this.btnAddNewProject.Click += new System.EventHandler(this.onClickAddNewProject);
+			this.btnAddProject.Location = new System.Drawing.Point(404, 144);
+			this.btnAddProject.Name = "btnAddProject";
+			this.btnAddProject.Size = new System.Drawing.Size(87, 23);
+			this.btnAddProject.TabIndex = 14;
+			this.btnAddProject.Text = "Add";
+			this.btnAddProject.UseVisualStyleBackColor = true;
+			this.btnAddProject.Click += new System.EventHandler(this.btnAddProject_Click);
 			// 
 			// listProjects
 			// 
@@ -100,6 +101,7 @@
             this.StartDate,
             this.EndDate,
             this.State,
+            this.columnHeader7,
             this.Description});
 			this.listProjects.FullRowSelect = true;
 			this.listProjects.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
@@ -107,37 +109,42 @@
 			this.listProjects.Location = new System.Drawing.Point(15, 19);
 			this.listProjects.MultiSelect = false;
 			this.listProjects.Name = "listProjects";
-			this.listProjects.Size = new System.Drawing.Size(645, 102);
+			this.listProjects.Size = new System.Drawing.Size(686, 119);
 			this.listProjects.TabIndex = 15;
 			this.listProjects.UseCompatibleStateImageBehavior = false;
 			this.listProjects.View = System.Windows.Forms.View.Details;
 			this.listProjects.SelectedIndexChanged += new System.EventHandler(this.listProjects_SelectedIndexChanged);
+			this.listProjects.DoubleClick += new System.EventHandler(this.listProjects_DoubleClick);
 			// 
 			// ID
 			// 
 			this.ID.Text = "ID";
+			this.ID.Width = 24;
 			// 
 			// Title
 			// 
 			this.Title.Text = "Title";
+			this.Title.Width = 114;
 			// 
 			// StartDate
 			// 
-			this.StartDate.Text = "Start Date";
-			this.StartDate.Width = 78;
+			this.StartDate.Text = "Start Time";
+			this.StartDate.Width = 81;
 			// 
 			// EndDate
 			// 
-			this.EndDate.Text = "End Date";
+			this.EndDate.Text = "End Time";
+			this.EndDate.Width = 73;
 			// 
 			// State
 			// 
 			this.State.Text = "State";
+			this.State.Width = 95;
 			// 
 			// Description
 			// 
 			this.Description.Text = "Description";
-			this.Description.Width = 120;
+			this.Description.Width = 198;
 			// 
 			// listTasks
 			// 
@@ -153,7 +160,7 @@
 			this.listTasks.FullRowSelect = true;
 			this.listTasks.Location = new System.Drawing.Point(15, 19);
 			this.listTasks.Name = "listTasks";
-			this.listTasks.Size = new System.Drawing.Size(645, 97);
+			this.listTasks.Size = new System.Drawing.Size(686, 119);
 			this.listTasks.TabIndex = 16;
 			this.listTasks.UseCompatibleStateImageBehavior = false;
 			this.listTasks.View = System.Windows.Forms.View.Details;
@@ -161,44 +168,47 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "ID";
-			this.columnHeader1.Width = 30;
+			this.columnHeader1.Width = 23;
 			// 
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "Title";
+			this.columnHeader2.Width = 104;
 			// 
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Start Time";
+			this.columnHeader3.Width = 64;
 			// 
 			// EndTime
 			// 
 			this.EndTime.Text = "End Time";
+			this.EndTime.Width = 66;
 			// 
 			// columnHeader6
 			// 
-			this.columnHeader6.Text = "Task Hours";
+			this.columnHeader6.Text = "Hours";
+			this.columnHeader6.Width = 52;
 			// 
 			// columnHeader8
 			// 
 			this.columnHeader8.Text = "State";
+			this.columnHeader8.Width = 91;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "Description";
-			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.columnHeader4.Width = 120;
+			this.columnHeader4.Width = 146;
 			// 
 			// columnHeader5
 			// 
 			this.columnHeader5.Text = "Assigned Employee";
-			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.columnHeader5.Width = 150;
+			this.columnHeader5.Width = 110;
 			// 
 			// btnEditTask
 			// 
 			this.btnEditTask.Enabled = false;
-			this.btnEditTask.Location = new System.Drawing.Point(363, 123);
+			this.btnEditTask.Location = new System.Drawing.Point(508, 144);
 			this.btnEditTask.Name = "btnEditTask";
 			this.btnEditTask.Size = new System.Drawing.Size(87, 23);
 			this.btnEditTask.TabIndex = 18;
@@ -209,56 +219,64 @@
 			// btnDeleteTask
 			// 
 			this.btnDeleteTask.Enabled = false;
-			this.btnDeleteTask.Location = new System.Drawing.Point(469, 123);
+			this.btnDeleteTask.Location = new System.Drawing.Point(614, 144);
 			this.btnDeleteTask.Name = "btnDeleteTask";
 			this.btnDeleteTask.Size = new System.Drawing.Size(87, 23);
 			this.btnDeleteTask.TabIndex = 18;
 			this.btnDeleteTask.Text = "Delete";
 			this.btnDeleteTask.UseVisualStyleBackColor = true;
 			// 
-			// btnAddNewTask
+			// btnAddTask
 			// 
-			this.btnAddNewTask.Location = new System.Drawing.Point(573, 122);
-			this.btnAddNewTask.Name = "btnAddNewTask";
-			this.btnAddNewTask.Size = new System.Drawing.Size(87, 23);
-			this.btnAddNewTask.TabIndex = 18;
-			this.btnAddNewTask.Text = "Add New";
-			this.btnAddNewTask.UseVisualStyleBackColor = true;
-			this.btnAddNewTask.Click += new System.EventHandler(this.onClickAddNewTask);
+			this.btnAddTask.Location = new System.Drawing.Point(404, 143);
+			this.btnAddTask.Name = "btnAddTask";
+			this.btnAddTask.Size = new System.Drawing.Size(87, 23);
+			this.btnAddTask.TabIndex = 18;
+			this.btnAddTask.Text = "Add";
+			this.btnAddTask.UseVisualStyleBackColor = true;
+			this.btnAddTask.Click += new System.EventHandler(this.btnAddTask_Click);
 			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.btnEditProject);
 			this.groupBox1.Controls.Add(this.btnDeleteProject);
-			this.groupBox1.Controls.Add(this.btnAddNewProject);
+			this.groupBox1.Controls.Add(this.btnAddProject);
 			this.groupBox1.Controls.Add(this.listProjects);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(677, 162);
+			this.groupBox1.Size = new System.Drawing.Size(715, 182);
 			this.groupBox1.TabIndex = 19;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Projects";
+			this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
 			// 
 			// groupBox2
 			// 
 			this.groupBox2.Controls.Add(this.listTasks);
 			this.groupBox2.Controls.Add(this.btnEditTask);
-			this.groupBox2.Controls.Add(this.btnAddNewTask);
+			this.groupBox2.Controls.Add(this.btnAddTask);
 			this.groupBox2.Controls.Add(this.btnDeleteTask);
-			this.groupBox2.Location = new System.Drawing.Point(12, 200);
+			this.groupBox2.Location = new System.Drawing.Point(12, 212);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(677, 156);
+			this.groupBox2.Size = new System.Drawing.Size(715, 186);
 			this.groupBox2.TabIndex = 20;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Tasks";
+			// 
+			// columnHeader7
+			// 
+			this.columnHeader7.Text = "Cost";
+			this.columnHeader7.Width = 69;
 			// 
 			// WndManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(701, 463);
+			this.ClientSize = new System.Drawing.Size(739, 484);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
 			this.Name = "WndManager";
 			this.Text = "ManagerForm";
 			this.groupBox1.ResumeLayout(false);
@@ -270,7 +288,7 @@
         #endregion
         private System.Windows.Forms.Button btnEditProject;
         private System.Windows.Forms.Button btnDeleteProject;
-        private System.Windows.Forms.Button btnAddNewProject;
+        private System.Windows.Forms.Button btnAddProject;
         private System.Windows.Forms.ListView listProjects;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Title;
@@ -286,11 +304,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button btnEditTask;
         private System.Windows.Forms.Button btnDeleteTask;
-        private System.Windows.Forms.Button btnAddNewTask;
+        private System.Windows.Forms.Button btnAddTask;
         private System.Windows.Forms.ColumnHeader EndTime;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.ColumnHeader columnHeader7;
 	}
 }

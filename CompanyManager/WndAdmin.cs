@@ -92,9 +92,9 @@ namespace CompanyManager
 				Master.Instance.Departments.Add(dlgDepartment.Department);
 
 				selectedItem.Tag = dlgDepartment.Department;
-				selectedItem.SubItems[0].Text = dlgDepartment.Department.Id.ToString();
-				selectedItem.SubItems[1].Text = dlgDepartment.Department.Name;
-				selectedItem.SubItems[2].Text = dlgDepartment.Department.Description;
+				selectedItem.SubItems[0].Text = selectedDepartment.Id.ToString();
+				selectedItem.SubItems[1].Text = selectedDepartment.Name;
+				selectedItem.SubItems[2].Text = selectedDepartment.Description;
 
 				listDepartments.Refresh();
 				LoadEmployees();
@@ -180,37 +180,10 @@ namespace CompanyManager
 			cbDepartments.SelectedItem = null;
 		}
 
-		private void btnPromote_Click(object sender, EventArgs e)
-		{
-			var selectedEmployee = listEmployees.SelectedItems[0];
-			var employee = (Employee)selectedEmployee.Tag;
-			var dlg = new DlgChooseDepartment(employee)
-			{
-				Owner = this,
-				StartPosition = FormStartPosition.CenterParent
-			};
-
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				PromoteEmployee(selectedEmployee, dlg.Department);
-			}
-		}
-
-		private void PromoteEmployee(ListViewItem employeeItem, Department department)
+		private void PromoteEmployee(ListViewItem employeeItem, Manager manager)
 		{
 			var employee = (Employee)employeeItem.Tag;
 			listEmployees.Items.Remove(employeeItem);
-
-			var manager = new Manager
-			{
-				FirstName = employee.FirstName,
-				LastName = employee.LastName,
-				DateOfBirth = employee.DateOfBirth,
-				Gender = employee.Gender,
-				Username = employee.Username,
-				Password = employee.Password,
-				Department = department
-			};
 
 			Master.Instance.Users.Remove(employee);
 			employee.Department.Employees.Remove(employee);
@@ -220,12 +193,7 @@ namespace CompanyManager
 
 			AddUser(listManagers, manager);
 		}
-
-		private void listEmployees_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			btnPromote.Enabled = listEmployees.SelectedItems.Count > 0;
-		}
-
+		
 		private void list_DoubleClick(object sender, EventArgs e)
 		{
 			var list = (ListView)sender;
@@ -249,12 +217,12 @@ namespace CompanyManager
 			{
 				if (dlg.User is Manager && wasUser)
 				{
-					PromoteEmployee(selectedItem, dlg.User.Department);
+					PromoteEmployee(selectedItem, (Manager)dlg.User);
 				}
 
-				selectedItem.SubItems[0].Text = dlg.User.Department.Id.ToString();
-				selectedItem.SubItems[1].Text = dlg.User.ToString();
-				selectedItem.SubItems[2].Text = dlg.User.Department.Name;
+				selectedItem.SubItems[0].Text = selectedUser.Department.Id.ToString();
+				selectedItem.SubItems[1].Text = selectedUser.ToString();
+				selectedItem.SubItems[2].Text = selectedUser.Department.Name;
 			}
 		}
 	}

@@ -19,12 +19,12 @@ namespace CompanySystem
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public string Description { get; set; }
         public ProjectState State { get; set; }
-
-        public Manager Manager { get; set; }
+		public decimal Cost { get; set; }
+		public Manager Manager { get; set; }
         public List<Task> Tasks { get; set; } = new List<Task>();
 
 		public override string ToString()

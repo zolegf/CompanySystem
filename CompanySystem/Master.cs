@@ -226,7 +226,6 @@ namespace CompanySystem
 		{
 			task.Project.Manager.Tasks.Remove(task);
 			task.Project.Tasks.Remove(task);
-			task.Employee.Tasks.Remove(task);
 			Tasks.Remove(task);
 		}
 

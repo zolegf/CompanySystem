@@ -1,89 +1,77 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using CompanySystem;
 
 namespace CompanyManager
 {
-    public partial class DlgTask : Form
-    {
-        public DlgTask()
-        {
-            InitializeComponent();
-        }
+	public partial class DlgTask : Form
+	{
+		public DlgTask()
+		{
+			InitializeComponent();
+		}
 
-        public Task Task { get; set; }
+		public Task Task { get; set; }
 
-        private void onClickOK(object sender, EventArgs e)
-        {
-            if (Task == null)
-            {
-                Manager user = (Manager)Master.Instance.CurentUser;
-                var task = new Task()
-                {
-                    Id = Master.Instance.NextObjectId,
-                    Title = txtTaskTitle.Text,
-                    StartTime = dateStartTime.Value,
-                    EndTime = dateEndTime.Value,
-                    TaskHours = Convert.ToInt32(textTaskHours.Text),
-                    Description = txtTaskDescription.Text,
-                    Employee = (Employee)comboEmployees.SelectedItem,
-                    Project = (Project)comboProjects.SelectedItem
-                };
+		private void TaskDlg_Load(object sender, EventArgs e)
+		{
+			Manager user = (Manager)Master.Instance.CurentUser;
 
-                task.Project.Tasks.Add(task);
+			cbEmployees.Items.AddRange(user.Department.Employees.ToArray());
+			cbProjects.Items.AddRange(user.Projects.ToArray());
 
-                Master.Instance.Tasks.Add(task);
-                Master.Instance.SaveChanges();
+			if (Task == null)
+			{
+				Text = "Create a new Task";
+			}
+			else
+			{
+				Text = "Edit Task";
+				txtTaskTitle.Text = Task.Title;
+				dateStartTime.Value = Task.StartTime;
+				dateEndTime.Value = Task.EndTime;
+				textTaskHours.Text = Task.TaskHours.ToString();
+				txtTaskDescription.Text = Task.Description;
 
-                Task = task;
-            }
-            else
-            {
-                Task.Title = txtTaskTitle.Text;
-                Task.StartTime = dateStartTime.Value;
-                Task.EndTime = dateEndTime.Value;
-                Task.TaskHours = Convert.ToInt32(textTaskHours.Text);
-                Task.Description = txtTaskDescription.Text;
-                
-                //Task.Employee = (Employee)comboEmployees.SelectedItem;
-                //Task.Project = (Project)comboProjects.SelectedItem;
-            }
+				cbEmployees.SelectedItem = Task.Employee;
+				cbProjects.SelectedItem = Task.Project;
+			}
+		}
 
-            DialogResult = DialogResult.OK;
-        }
+		private void btnOk_Click(object sender, EventArgs e)
+		{
+			if (Task == null)
+			{
+				Manager user = (Manager)Master.Instance.CurentUser;
+				Task = new Task()
+				{
+					Id = Master.Instance.NextObjectId,
+					Title = txtTaskTitle.Text,
+					StartTime = dateStartTime.Value,
+					EndTime = dateEndTime.Value,
+					TaskHours = Convert.ToInt32(textTaskHours.Text),
+					Description = txtTaskDescription.Text,
+					Employee = (Employee)cbEmployees.SelectedItem,
+					Project = (Project)cbProjects.SelectedItem,				
+				};
 
-        private void onClickCancel(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-        }
+				user.Tasks.Add(Task);
+				Task.Employee.Projects.Add(Task.Project);
+				Master.Instance.Tasks.Add(Task);
+				Task.Project.Tasks.Add(Task);
+			}
+			else
+			{
+				Task.Title = txtTaskTitle.Text;
+				Task.StartTime = dateStartTime.Value;
+				Task.EndTime = dateEndTime.Value;
+				Task.TaskHours = Convert.ToInt32(textTaskHours.Text);
+				Task.Description = txtTaskDescription.Text;
 
-        private void TaskDlg_Load(object sender, EventArgs e)
-        {
-            if (Task == null)
-            {
-                Manager user = (Manager)Master.Instance.CurentUser;
-                foreach (var item in Master.Instance.Users)
-                {
-                    if (item is Manager || item is Admin || item.Department != user.Department)
-                        continue;
-
-                    comboEmployees.Items.Add(item);
-                }
-                foreach (var item in user.Projects)
-                {
-                    comboProjects.Items.Add(item);
-                }
-            }
-            else
-            {
-                txtTaskTitle.Text = Task.Title;
-                    //StartTime = dateStartTime.Value,
-                    //EndTime = dateEndTime.Value,
-                    //TaskHours = Convert.ToInt32(textTaskHours.Text),
-                    //Description = txtTaskDescription.Text,
-                    //Employee = (Employee)comboEmployees.SelectedItem,
-                    //Project = (Project)comboProjects.SelectedItem
-            }
-        }
-    }
+				Task.Employee = (Employee)cbEmployees.SelectedItem;
+				Task.Project = (Project)cbProjects.SelectedItem;
+			}
+		}
+	}
 }

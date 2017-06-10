@@ -51,6 +51,7 @@
     <Compile Include="Admin.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Master.cs" />
     <Compile Include="Project.cs" />

@@ -119,7 +119,7 @@
 			this.btnOK.Location = new System.Drawing.Point(184, 237);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
-			this.btnOK.TabIndex = 6;
+			this.btnOK.TabIndex = 7;
 			this.btnOK.Text = "OK";
 			this.btnOK.UseVisualStyleBackColor = true;
 			this.btnOK.Click += new System.EventHandler(this.btnOk_Click);
@@ -130,7 +130,7 @@
 			this.btnCancel.Location = new System.Drawing.Point(274, 237);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
-			this.btnCancel.TabIndex = 7;
+			this.btnCancel.TabIndex = 8;
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
@@ -175,7 +175,7 @@
 			this.txtManager.Name = "txtManager";
 			this.txtManager.ReadOnly = true;
 			this.txtManager.Size = new System.Drawing.Size(223, 20);
-			this.txtManager.TabIndex = 0;
+			this.txtManager.TabIndex = 6;
 			// 
 			// label7
 			// 
@@ -208,6 +208,8 @@
 			this.Controls.Add(this.txtCost);
 			this.Controls.Add(this.txtDescription);
 			this.Controls.Add(this.txtTitle);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
 			this.Name = "DlgProject";
 			this.Text = "Project";
 			this.Load += new System.EventHandler(this.DlgProject_Load);

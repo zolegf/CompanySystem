@@ -29,8 +29,6 @@ namespace CompanyManager
 				Department.Name = txtDepartmentName.Text;
 				Department.Description = txtDepartmentDescription.Text;
 			}
-
-			DialogResult = DialogResult.OK;
 		}
 
 		private void DlgDepartment_Load(object sender, EventArgs e)

@@ -34,14 +34,7 @@ namespace CompanyManager
 				rbEmployee.Checked = User is Employee;
 				rbManager.Checked = User is Manager;
 
-				foreach (var item in cbDepartments.Items)
-				{
-					if (((Department)item == User.Department))
-					{
-						cbDepartments.SelectedItem = item;
-						break;
-					}
-				}
+				cbDepartments.SelectedItem = User.Department;
 			}
 		}
 

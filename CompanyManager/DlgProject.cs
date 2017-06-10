@@ -11,6 +11,12 @@ namespace CompanyManager
 		public DlgProject()
 		{
 			InitializeComponent();
+
+			//TODO: validacija:
+			/*
+			 * Projekat moze preci u Finished stanje, 
+			 * jedino ako su svi taskovi unutar tog projekta u Done stanju. 
+			 */
 		}
 
 		public Project Project { get; set; }
@@ -56,7 +62,8 @@ namespace CompanyManager
 					Manager = manager
 				};
 
-				manager.Projects.Add(Project);
+				Master.Instance.Projects.Add(Project);
+				Project.Manager.Projects.Add(Project);
 			}
 			else
 			{
@@ -67,6 +74,14 @@ namespace CompanyManager
 				Project.State = (ProjectState)cbState.SelectedItem;
 				Project.Cost = Convert.ToDecimal(txtCost.Text);
 				Project.Manager = manager;
+
+				if (Project.State == ProjectState.Canceled)
+				{
+					foreach (var item in Project.Tasks)
+					{
+						item.TaskState = TaskState.Cancelled;
+					}
+				}
 			}
 		}
 	}

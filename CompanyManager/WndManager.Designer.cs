@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+			System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "5",
             "APS",
             "05.06.2017"}, -1);
@@ -41,6 +41,7 @@
 			this.StartDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.EndDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.State = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.listTasks = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,7 +57,9 @@
 			this.btnAddTask = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.cbProjects = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.btnClearFilter = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -105,7 +108,7 @@
             this.Description});
 			this.listProjects.FullRowSelect = true;
 			this.listProjects.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
 			this.listProjects.Location = new System.Drawing.Point(15, 19);
 			this.listProjects.MultiSelect = false;
 			this.listProjects.Name = "listProjects";
@@ -141,6 +144,11 @@
 			this.State.Text = "State";
 			this.State.Width = 95;
 			// 
+			// columnHeader7
+			// 
+			this.columnHeader7.Text = "Cost";
+			this.columnHeader7.Width = 69;
+			// 
 			// Description
 			// 
 			this.Description.Text = "Description";
@@ -158,12 +166,14 @@
             this.columnHeader4,
             this.columnHeader5});
 			this.listTasks.FullRowSelect = true;
-			this.listTasks.Location = new System.Drawing.Point(15, 19);
+			this.listTasks.Location = new System.Drawing.Point(15, 58);
 			this.listTasks.Name = "listTasks";
 			this.listTasks.Size = new System.Drawing.Size(686, 119);
 			this.listTasks.TabIndex = 16;
 			this.listTasks.UseCompatibleStateImageBehavior = false;
 			this.listTasks.View = System.Windows.Forms.View.Details;
+			this.listTasks.SelectedIndexChanged += new System.EventHandler(this.listTasks_SelectedIndexChanged);
+			this.listTasks.DoubleClick += new System.EventHandler(this.listTasks_DoubleClick);
 			// 
 			// columnHeader1
 			// 
@@ -208,7 +218,7 @@
 			// btnEditTask
 			// 
 			this.btnEditTask.Enabled = false;
-			this.btnEditTask.Location = new System.Drawing.Point(508, 144);
+			this.btnEditTask.Location = new System.Drawing.Point(508, 183);
 			this.btnEditTask.Name = "btnEditTask";
 			this.btnEditTask.Size = new System.Drawing.Size(87, 23);
 			this.btnEditTask.TabIndex = 18;
@@ -219,16 +229,17 @@
 			// btnDeleteTask
 			// 
 			this.btnDeleteTask.Enabled = false;
-			this.btnDeleteTask.Location = new System.Drawing.Point(614, 144);
+			this.btnDeleteTask.Location = new System.Drawing.Point(614, 183);
 			this.btnDeleteTask.Name = "btnDeleteTask";
 			this.btnDeleteTask.Size = new System.Drawing.Size(87, 23);
 			this.btnDeleteTask.TabIndex = 18;
 			this.btnDeleteTask.Text = "Delete";
 			this.btnDeleteTask.UseVisualStyleBackColor = true;
+			this.btnDeleteTask.Click += new System.EventHandler(this.btnDeleteTask_Click);
 			// 
 			// btnAddTask
 			// 
-			this.btnAddTask.Location = new System.Drawing.Point(404, 143);
+			this.btnAddTask.Location = new System.Drawing.Point(404, 182);
 			this.btnAddTask.Name = "btnAddTask";
 			this.btnAddTask.Size = new System.Drawing.Size(87, 23);
 			this.btnAddTask.TabIndex = 18;
@@ -248,25 +259,49 @@
 			this.groupBox1.TabIndex = 19;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Projects";
-			this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.btnClearFilter);
+			this.groupBox2.Controls.Add(this.label1);
+			this.groupBox2.Controls.Add(this.cbProjects);
 			this.groupBox2.Controls.Add(this.listTasks);
 			this.groupBox2.Controls.Add(this.btnEditTask);
 			this.groupBox2.Controls.Add(this.btnAddTask);
 			this.groupBox2.Controls.Add(this.btnDeleteTask);
 			this.groupBox2.Location = new System.Drawing.Point(12, 212);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(715, 186);
+			this.groupBox2.Size = new System.Drawing.Size(715, 219);
 			this.groupBox2.TabIndex = 20;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Tasks";
 			// 
-			// columnHeader7
+			// cbProjects
 			// 
-			this.columnHeader7.Text = "Cost";
-			this.columnHeader7.Width = 69;
+			this.cbProjects.FormattingEnabled = true;
+			this.cbProjects.Location = new System.Drawing.Point(94, 24);
+			this.cbProjects.Name = "cbProjects";
+			this.cbProjects.Size = new System.Drawing.Size(183, 21);
+			this.cbProjects.TabIndex = 19;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(16, 27);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(40, 13);
+			this.label1.TabIndex = 20;
+			this.label1.Text = "Project";
+			// 
+			// btnClearFilter
+			// 
+			this.btnClearFilter.Location = new System.Drawing.Point(303, 24);
+			this.btnClearFilter.Name = "btnClearFilter";
+			this.btnClearFilter.Size = new System.Drawing.Size(87, 21);
+			this.btnClearFilter.TabIndex = 21;
+			this.btnClearFilter.Text = "Clear fiter";
+			this.btnClearFilter.UseVisualStyleBackColor = true;
+			this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
 			// 
 			// WndManager
 			// 
@@ -281,6 +316,7 @@
 			this.Text = "ManagerForm";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -311,5 +347,8 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.Button btnClearFilter;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ComboBox cbProjects;
 	}
 }

@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanySystem
 {
-    public enum ProjectState
+	public enum ProjectState
     {
         New,
         InProgress,
         Finished,
-        Delay
+        Delay,
+		Canceled
     }
 
     [Serializable]
-    public class Project
+    public class Project : Entity
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

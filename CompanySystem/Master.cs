@@ -43,7 +43,8 @@ namespace CompanySystem
 				Username = "zoran",
 				Password = "zoran",
 				DateOfBirth = DateTime.Today.Subtract(TimeSpan.FromDays(33 * 365))
-		};
+			};
+
 			Users.Add(manager);
 
 			var employee = new Employee()
@@ -77,7 +78,6 @@ namespace CompanySystem
 				EndTime = DateTime.Today.AddDays(10),
 				State = ProjectState.New,
 				Manager = manager
-
 			};
 
 			var task = new Task()
@@ -89,12 +89,15 @@ namespace CompanySystem
 				TaskHours = 10,
 				TaskState = TaskState.To_Do,
 				Description = "Testing some shit!!",
-				Employee = employee
+				Employee = employee,
+				Project = project
 			};
 
 			Projects.Add(project);
 			project.Tasks.Add(task);
+			Tasks.Add(task);
 
+			manager.Tasks.Add(task);
 			manager.Projects.Add(project);
 
 			Departments.AddRange(new[]
@@ -110,7 +113,7 @@ namespace CompanySystem
 			employee.Department = accountingDepartment;
 			employee2.Department = accountingDepartment;
 
-			accountingDepartment.Employees.AddRange(new User[] { manager, employee, employee2 });
+			accountingDepartment.Employees.AddRange(new User[] { employee, employee2 });
 		}
 
 		private static Master Load()

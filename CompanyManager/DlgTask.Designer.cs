@@ -36,10 +36,10 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.comboProjects = new System.Windows.Forms.ComboBox();
+			this.cbProjects = new System.Windows.Forms.ComboBox();
 			this.btnOK = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
-			this.comboEmployees = new System.Windows.Forms.ComboBox();
+			this.cbEmployees = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.textTaskHours = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
 			this.txtTaskDescription.Multiline = true;
 			this.txtTaskDescription.Name = "txtTaskDescription";
 			this.txtTaskDescription.Size = new System.Drawing.Size(204, 40);
-			this.txtTaskDescription.TabIndex = 0;
+			this.txtTaskDescription.TabIndex = 1;
 			// 
 			// dateStartTime
 			// 
@@ -67,7 +67,7 @@
 			this.dateStartTime.Location = new System.Drawing.Point(157, 94);
 			this.dateStartTime.Name = "dateStartTime";
 			this.dateStartTime.Size = new System.Drawing.Size(100, 20);
-			this.dateStartTime.TabIndex = 1;
+			this.dateStartTime.TabIndex = 2;
 			// 
 			// label1
 			// 
@@ -114,41 +114,42 @@
 			this.label5.TabIndex = 2;
 			this.label5.Text = "Projects";
 			// 
-			// comboProjects
+			// cbProjects
 			// 
-			this.comboProjects.FormattingEnabled = true;
-			this.comboProjects.Location = new System.Drawing.Point(157, 210);
-			this.comboProjects.Name = "comboProjects";
-			this.comboProjects.Size = new System.Drawing.Size(204, 21);
-			this.comboProjects.TabIndex = 3;
+			this.cbProjects.FormattingEnabled = true;
+			this.cbProjects.Location = new System.Drawing.Point(157, 210);
+			this.cbProjects.Name = "cbProjects";
+			this.cbProjects.Size = new System.Drawing.Size(204, 21);
+			this.cbProjects.TabIndex = 6;
 			// 
 			// btnOK
 			// 
+			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOK.Location = new System.Drawing.Point(192, 250);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
-			this.btnOK.TabIndex = 4;
+			this.btnOK.TabIndex = 7;
 			this.btnOK.Text = "OK";
 			this.btnOK.UseVisualStyleBackColor = true;
-			this.btnOK.Click += new System.EventHandler(this.onClickOK);
+			this.btnOK.Click += new System.EventHandler(this.btnOk_Click);
 			// 
 			// btnCancel
 			// 
+			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnCancel.Location = new System.Drawing.Point(286, 250);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
-			this.btnCancel.TabIndex = 4;
+			this.btnCancel.TabIndex = 8;
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
-			this.btnCancel.Click += new System.EventHandler(this.onClickCancel);
 			// 
-			// comboEmployees
+			// cbEmployees
 			// 
-			this.comboEmployees.FormattingEnabled = true;
-			this.comboEmployees.Location = new System.Drawing.Point(157, 183);
-			this.comboEmployees.Name = "comboEmployees";
-			this.comboEmployees.Size = new System.Drawing.Size(204, 21);
-			this.comboEmployees.TabIndex = 3;
+			this.cbEmployees.FormattingEnabled = true;
+			this.cbEmployees.Location = new System.Drawing.Point(157, 183);
+			this.cbEmployees.Name = "cbEmployees";
+			this.cbEmployees.Size = new System.Drawing.Size(204, 21);
+			this.cbEmployees.TabIndex = 5;
 			// 
 			// label6
 			// 
@@ -164,7 +165,7 @@
 			this.textTaskHours.Location = new System.Drawing.Point(157, 146);
 			this.textTaskHours.Name = "textTaskHours";
 			this.textTaskHours.Size = new System.Drawing.Size(100, 20);
-			this.textTaskHours.TabIndex = 5;
+			this.textTaskHours.TabIndex = 4;
 			// 
 			// label7
 			// 
@@ -181,9 +182,9 @@
 			this.dateEndTime.Location = new System.Drawing.Point(157, 120);
 			this.dateEndTime.Name = "dateEndTime";
 			this.dateEndTime.Size = new System.Drawing.Size(100, 20);
-			this.dateEndTime.TabIndex = 1;
+			this.dateEndTime.TabIndex = 3;
 			// 
-			// DlgTaskDlg
+			// DlgTask
 			// 
 			this.AcceptButton = this.btnOK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,9 +193,9 @@
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.textTaskHours);
 			this.Controls.Add(this.btnCancel);
-			this.Controls.Add(this.comboEmployees);
+			this.Controls.Add(this.cbEmployees);
 			this.Controls.Add(this.btnOK);
-			this.Controls.Add(this.comboProjects);
+			this.Controls.Add(this.cbProjects);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
@@ -205,7 +206,9 @@
 			this.Controls.Add(this.dateStartTime);
 			this.Controls.Add(this.txtTaskDescription);
 			this.Controls.Add(this.txtTaskTitle);
-			this.Name = "DlgTaskDlg";
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
+			this.Name = "DlgTask";
 			this.Text = "TaskDlg";
 			this.Load += new System.EventHandler(this.TaskDlg_Load);
 			this.ResumeLayout(false);
@@ -223,10 +226,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboProjects;
+        private System.Windows.Forms.ComboBox cbProjects;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ComboBox comboEmployees;
+        private System.Windows.Forms.ComboBox cbEmployees;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textTaskHours;
         private System.Windows.Forms.Label label7;

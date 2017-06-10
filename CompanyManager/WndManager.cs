@@ -11,15 +11,18 @@ namespace CompanyManager
 			InitializeComponent();
 
 			LoadProjects((Manager)Master.Instance.CurentUser);
+			LoadTaskList();
 			Text = Master.Instance.WindowTitle;
 		}
 
 		private void LoadProjects(Manager manager)
 		{
 			listProjects.Items.Clear();
+			cbProjects.Items.Clear();
 
 			foreach (var item in manager.Projects)
 			{
+				cbProjects.Items.Add(item);
 				AddProject(item);
 			}
 		}
@@ -34,8 +37,10 @@ namespace CompanyManager
 
 			if (projectDlg.ShowDialog() == DialogResult.OK)
 			{
-				Master.Instance.Projects.Add(projectDlg.Project);
 				AddProject(projectDlg.Project);
+				cbProjects.Items.Add(projectDlg.Project);
+
+				LoadTaskList();
 			}
 		}
 
@@ -56,13 +61,9 @@ namespace CompanyManager
 			listProjects.Items.Add(listItem);
 		}
 
-		private void LoadTaskList(Project project)
+		void AddTask(Task item)
 		{
-			listTasks.Items.Clear();
-
-			foreach (var item in project.Tasks)
-			{
-				var listItem = new ListViewItem(new string[]
+			var listItem = new ListViewItem(new string[]
 				{
 					item.Id.ToString(),
 					item.Title.ToString(),
@@ -71,12 +72,30 @@ namespace CompanyManager
 					item.TaskHours.ToString(),
 					item.TaskState.ToString(),
 					item.Description,
-					item.Employee.FirstName
-
+					item.Employee.Name
 				});
 
-				listItem.Tag = item;
-				listTasks.Items.Add(listItem);
+			listItem.Tag = item;
+			listTasks.Items.Add(listItem);
+		}
+
+		private void LoadTaskList()
+		{
+			listTasks.Items.Clear();
+
+			if (cbProjects.SelectedItem != null)
+			{
+				foreach (var item in ((Project)cbProjects.SelectedItem).Tasks)
+				{
+					AddTask(item);
+				}
+			}
+			else
+			{
+				foreach (var item in ((Manager)Master.Instance.CurentUser).Tasks)
+				{
+					AddTask(item);
+				}
 			}
 		}
 
@@ -85,32 +104,30 @@ namespace CompanyManager
 			btnEditProject.Enabled = listProjects.SelectedItems.Count > 0;
 			btnDeleteProject.Enabled = listProjects.SelectedItems.Count > 0;
 
-			var selectedItem = listProjects.SelectedItems[0];
+			var selectedItem = listProjects.SelectedItems.Count > 0 ? 
+				listProjects.SelectedItems[0] : 
+				null;
+
 			if (selectedItem != null)
 			{
 				var project = (Project)selectedItem.Tag;
-				LoadTaskList(project);
+				cbProjects.SelectedItem = project;
 			}
+
+			LoadTaskList();
 		}
 
 		private void btnAddTask_Click(object sender, EventArgs e)
 		{
-			var taskDlg = new DlgTask() { Owner = this, StartPosition = FormStartPosition.CenterParent };
+			var taskDlg = new DlgTask()
+			{
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent
+			};
+
 			if (taskDlg.ShowDialog() == DialogResult.OK)
 			{
-				var task = (Task)taskDlg.Tag;
-
-				var listItem = new ListViewItem(new string[]
-				{
-					task.Id.ToString(),
-					task.Title,
-					task.StartTime.ToString(),
-					task.EndTime.ToString(),
-					task.TaskHours.ToString(),
-					task.Description
-				});
-
-				listTasks.Items.Add(listItem);
+				AddTask(taskDlg.Task);
 			}
 		}
 
@@ -121,10 +138,17 @@ namespace CompanyManager
 			if (selectedItem != null)
 			{
 				var project = (Project)selectedItem.Tag;
-				LoadTaskList(project);
+				listProjects.Items.Remove(selectedItem);
+				if (cbProjects.SelectedItem != null && cbProjects.SelectedItem.Equals(project))
+					cbProjects.Text = string.Empty;
+
+				cbProjects.Items.Remove(project);
+				Master.Instance.Tasks.RemoveAll(t => t.Project.Equals(project));
+				user.Tasks.RemoveAll(t => t.Project.Equals(project));
 				user.Projects.Remove(project);
+
+				LoadTaskList();
 			}
-			Master.Instance.SaveChanges();
 		}
 
 		private void btnEditProject_Click(object sender, EventArgs e)
@@ -151,7 +175,15 @@ namespace CompanyManager
 
 		private void btnEditTask_Click(object sender, EventArgs e)
 		{
-			var taskDlg = new DlgTask() { Owner = this, StartPosition = FormStartPosition.CenterParent, Task = (Task)listTasks.SelectedItems[0].Tag };
+			var selectedItem = listTasks.SelectedItems[0];
+			var task = (Task)selectedItem.Tag;
+
+			var taskDlg = new DlgTask()
+			{
+				Owner = this,
+				StartPosition = FormStartPosition.CenterParent,
+				Task = task
+			};
 			if (taskDlg.ShowDialog() == DialogResult.OK)
 			{
 				listTasks.Refresh();
@@ -164,9 +196,34 @@ namespace CompanyManager
 				btnEditProject_Click(this, e);
 		}
 
-		private void groupBox1_Enter(object sender, EventArgs e)
+		private void listTasks_DoubleClick(object sender, EventArgs e)
 		{
+			if (listTasks.SelectedItems.Count > 0)
+				btnEditTask_Click(this, e);
+		}
 
+		private void btnClearFilter_Click(object sender, EventArgs e)
+		{
+			cbProjects.SelectedItem = null;
+			LoadTaskList();
+		}
+
+		private void listTasks_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			btnEditTask.Enabled = listTasks.SelectedItems.Count > 0;
+			btnDeleteTask.Enabled = listTasks.SelectedItems.Count > 0;
+		}
+
+		private void btnDeleteTask_Click(object sender, EventArgs e)
+		{
+			var selectedItem = listTasks.SelectedItems[0];
+			var task = (Task)selectedItem.Tag;
+			listTasks.Items.Remove(selectedItem);
+
+			var user = (Manager)Master.Instance.CurentUser;
+			user.Tasks.Remove(task);
+			task.Project.Tasks.Remove(task);
+			Master.Instance.Tasks.Remove(task);
 		}
 	}
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -33,7 +31,6 @@ namespace CompanySystem
 				Username = "admin",
 				Password = "admin"
 			});
-
 
 			var manager = new Manager()
 			{
@@ -183,40 +180,59 @@ namespace CompanySystem
 		public void AddUser(User user)
 		{
 			Users.Add(user);
-
 		}
 
-		public void CreateProject()
+		public void PromoteEmployee(Employee employee, Manager manager)
 		{
-			//TODO
+			Users.Remove(employee);
+			employee.Department.Employees.Remove(employee);
+
+			Users.Add(manager);
+			manager.Department.Employees.Remove(manager);
 		}
 
-		public void EditProject()
+		public void AddDepartment(Department department)
 		{
-			//TODO
+			Departments.Add(department);
 		}
 
-		public void DeleteProject()
+		public void AddTask(Task task)
 		{
-			//TODO
+			task.Project.Manager.Tasks.Add(task);
+			task.Employee.Projects.Add(task.Project);
+			task.Project.Tasks.Add(task);
+			Tasks.Add(task);
 		}
 
-		public void CreateTask()
+		public void AddProject(Project project)
 		{
-			//TODO
+			Projects.Add(project);
+			project.Manager.Projects.Add(project);
 		}
 
-
-		public List<Task> GetTasks()
+		public void DeleteProject(Project project)
 		{
-			//TODO
-			return null;
+			project.Manager.Tasks.RemoveAll(t => t.Project.Equals(project));
+			project.Manager.Projects.Remove(project);
+			foreach (Employee user in Users.Where(u => u is Employee))
+			{
+				user.Projects.Remove(project);
+			}
+
+			Tasks.RemoveAll(t => t.Project.Equals(project));
 		}
 
-		public void SetProjectState()
+		public void DeleteTask(Task task)
 		{
-			//TODO
+			task.Project.Manager.Tasks.Remove(task);
+			task.Project.Tasks.Remove(task);
+			task.Employee.Tasks.Remove(task);
+			Tasks.Remove(task);
+		}
 
+		public void DeleteDepartment(Department department)
+		{
+			Departments.Remove(department);
 		}
 
 		public int NextObjectId

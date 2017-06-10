@@ -57,9 +57,9 @@
 			this.btnAddTask = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.cbProjects = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.btnClearFilter = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbProjects = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -107,6 +107,7 @@
             this.columnHeader7,
             this.Description});
 			this.listProjects.FullRowSelect = true;
+			this.listProjects.HideSelection = false;
 			this.listProjects.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem2});
 			this.listProjects.Location = new System.Drawing.Point(15, 19);
@@ -166,6 +167,7 @@
             this.columnHeader4,
             this.columnHeader5});
 			this.listTasks.FullRowSelect = true;
+			this.listTasks.HideSelection = false;
 			this.listTasks.Location = new System.Drawing.Point(15, 58);
 			this.listTasks.Name = "listTasks";
 			this.listTasks.Size = new System.Drawing.Size(686, 119);
@@ -276,23 +278,6 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Tasks";
 			// 
-			// cbProjects
-			// 
-			this.cbProjects.FormattingEnabled = true;
-			this.cbProjects.Location = new System.Drawing.Point(94, 24);
-			this.cbProjects.Name = "cbProjects";
-			this.cbProjects.Size = new System.Drawing.Size(183, 21);
-			this.cbProjects.TabIndex = 19;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(16, 27);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(40, 13);
-			this.label1.TabIndex = 20;
-			this.label1.Text = "Project";
-			// 
 			// btnClearFilter
 			// 
 			this.btnClearFilter.Location = new System.Drawing.Point(303, 24);
@@ -303,11 +288,28 @@
 			this.btnClearFilter.UseVisualStyleBackColor = true;
 			this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(16, 27);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(40, 13);
+			this.label1.TabIndex = 20;
+			this.label1.Text = "Project";
+			// 
+			// cbProjects
+			// 
+			this.cbProjects.FormattingEnabled = true;
+			this.cbProjects.Location = new System.Drawing.Point(94, 24);
+			this.cbProjects.Name = "cbProjects";
+			this.cbProjects.Size = new System.Drawing.Size(183, 21);
+			this.cbProjects.TabIndex = 19;
+			// 
 			// WndManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(739, 484);
+			this.ClientSize = new System.Drawing.Size(739, 449);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

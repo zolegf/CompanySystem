@@ -47,7 +47,7 @@ namespace CompanyManager
 				}.ShowDialog();
 			}
 
-			Close();
+			Show();
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)

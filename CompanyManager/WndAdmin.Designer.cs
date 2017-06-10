@@ -141,6 +141,7 @@
             this.name,
             this.description});
 			this.listDepartments.FullRowSelect = true;
+			this.listDepartments.HideSelection = false;
 			this.listDepartments.Location = new System.Drawing.Point(16, 19);
 			this.listDepartments.MultiSelect = false;
 			this.listDepartments.Name = "listDepartments";
@@ -175,7 +176,7 @@
 			this.btnDeleteDepartment.TabIndex = 10;
 			this.btnDeleteDepartment.Text = "Delete";
 			this.btnDeleteDepartment.UseVisualStyleBackColor = true;
-			this.btnDeleteDepartment.Click += new System.EventHandler(this.btnDeleteDeaprtment_Click);
+			this.btnDeleteDepartment.Click += new System.EventHandler(this.btnDeleteDepartment_Click);
 			// 
 			// groupBox1
 			// 
@@ -213,6 +214,7 @@
             this.columnHeader5,
             this.columnHeader8});
 			this.listManagers.FullRowSelect = true;
+			this.listManagers.HideSelection = false;
 			this.listManagers.Location = new System.Drawing.Point(305, 92);
 			this.listManagers.Name = "listManagers";
 			this.listManagers.Size = new System.Drawing.Size(261, 133);
@@ -243,6 +245,7 @@
             this.columnHeader2,
             this.columnHeader7});
 			this.listEmployees.FullRowSelect = true;
+			this.listEmployees.HideSelection = false;
 			this.listEmployees.Location = new System.Drawing.Point(19, 92);
 			this.listEmployees.Name = "listEmployees";
 			this.listEmployees.Size = new System.Drawing.Size(265, 133);

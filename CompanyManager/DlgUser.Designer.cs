@@ -52,37 +52,37 @@
 			// 
 			// txtFirstName
 			// 
-			this.txtFirstName.Location = new System.Drawing.Point(137, 75);
+			this.txtFirstName.Location = new System.Drawing.Point(147, 75);
 			this.txtFirstName.Name = "txtFirstName";
-			this.txtFirstName.Size = new System.Drawing.Size(100, 20);
+			this.txtFirstName.Size = new System.Drawing.Size(131, 20);
 			this.txtFirstName.TabIndex = 2;
 			// 
 			// txtLastName
 			// 
-			this.txtLastName.Location = new System.Drawing.Point(137, 104);
+			this.txtLastName.Location = new System.Drawing.Point(147, 104);
 			this.txtLastName.Name = "txtLastName";
-			this.txtLastName.Size = new System.Drawing.Size(100, 20);
+			this.txtLastName.Size = new System.Drawing.Size(131, 20);
 			this.txtLastName.TabIndex = 3;
 			// 
 			// txtUsername
 			// 
-			this.txtUsername.Location = new System.Drawing.Point(138, 17);
+			this.txtUsername.Location = new System.Drawing.Point(148, 17);
 			this.txtUsername.Name = "txtUsername";
-			this.txtUsername.Size = new System.Drawing.Size(100, 20);
+			this.txtUsername.Size = new System.Drawing.Size(131, 20);
 			this.txtUsername.TabIndex = 0;
 			// 
 			// txtPassword
 			// 
-			this.txtPassword.Location = new System.Drawing.Point(138, 46);
+			this.txtPassword.Location = new System.Drawing.Point(148, 46);
 			this.txtPassword.Name = "txtPassword";
-			this.txtPassword.Size = new System.Drawing.Size(100, 20);
+			this.txtPassword.Size = new System.Drawing.Size(131, 20);
 			this.txtPassword.TabIndex = 1;
 			this.txtPassword.UseSystemPasswordChar = true;
 			// 
 			// lblFirstName
 			// 
 			this.lblFirstName.AutoSize = true;
-			this.lblFirstName.Location = new System.Drawing.Point(48, 78);
+			this.lblFirstName.Location = new System.Drawing.Point(58, 78);
 			this.lblFirstName.Name = "lblFirstName";
 			this.lblFirstName.Size = new System.Drawing.Size(54, 13);
 			this.lblFirstName.TabIndex = 1;
@@ -91,7 +91,7 @@
 			// lblLastName
 			// 
 			this.lblLastName.AutoSize = true;
-			this.lblLastName.Location = new System.Drawing.Point(48, 107);
+			this.lblLastName.Location = new System.Drawing.Point(58, 107);
 			this.lblLastName.Name = "lblLastName";
 			this.lblLastName.Size = new System.Drawing.Size(58, 13);
 			this.lblLastName.TabIndex = 1;
@@ -100,7 +100,7 @@
 			// lblUserNameSignUp
 			// 
 			this.lblUserNameSignUp.AutoSize = true;
-			this.lblUserNameSignUp.Location = new System.Drawing.Point(48, 20);
+			this.lblUserNameSignUp.Location = new System.Drawing.Point(58, 20);
 			this.lblUserNameSignUp.Name = "lblUserNameSignUp";
 			this.lblUserNameSignUp.Size = new System.Drawing.Size(55, 13);
 			this.lblUserNameSignUp.TabIndex = 1;
@@ -109,7 +109,7 @@
 			// lblPaswwordSignUp
 			// 
 			this.lblPaswwordSignUp.AutoSize = true;
-			this.lblPaswwordSignUp.Location = new System.Drawing.Point(48, 49);
+			this.lblPaswwordSignUp.Location = new System.Drawing.Point(58, 49);
 			this.lblPaswwordSignUp.Name = "lblPaswwordSignUp";
 			this.lblPaswwordSignUp.Size = new System.Drawing.Size(53, 13);
 			this.lblPaswwordSignUp.TabIndex = 1;
@@ -118,7 +118,7 @@
 			// btnOk
 			// 
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOk.Location = new System.Drawing.Point(51, 310);
+			this.btnOk.Location = new System.Drawing.Point(114, 310);
 			this.btnOk.Name = "btnOk";
 			this.btnOk.Size = new System.Drawing.Size(75, 23);
 			this.btnOk.TabIndex = 7;
@@ -129,7 +129,7 @@
 			// btnCancelSignUp
 			// 
 			this.btnCancelSignUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancelSignUp.Location = new System.Drawing.Point(162, 310);
+			this.btnCancelSignUp.Location = new System.Drawing.Point(203, 310);
 			this.btnCancelSignUp.Name = "btnCancelSignUp";
 			this.btnCancelSignUp.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelSignUp.TabIndex = 8;
@@ -139,15 +139,15 @@
 			// cbDepartments
 			// 
 			this.cbDepartments.FormattingEnabled = true;
-			this.cbDepartments.Location = new System.Drawing.Point(137, 192);
+			this.cbDepartments.Location = new System.Drawing.Point(147, 192);
 			this.cbDepartments.Name = "cbDepartments";
-			this.cbDepartments.Size = new System.Drawing.Size(100, 21);
+			this.cbDepartments.Size = new System.Drawing.Size(131, 21);
 			this.cbDepartments.TabIndex = 6;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(48, 194);
+			this.label1.Location = new System.Drawing.Point(58, 194);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(62, 13);
 			this.label1.TabIndex = 7;
@@ -179,9 +179,9 @@
 			// 
 			this.groupBox1.Controls.Add(this.rbEmployee);
 			this.groupBox1.Controls.Add(this.rbManager);
-			this.groupBox1.Location = new System.Drawing.Point(51, 224);
+			this.groupBox1.Location = new System.Drawing.Point(61, 224);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(186, 80);
+			this.groupBox1.Size = new System.Drawing.Size(217, 80);
 			this.groupBox1.TabIndex = 9;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "User type";
@@ -189,7 +189,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(48, 136);
+			this.label2.Location = new System.Drawing.Point(58, 136);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(66, 13);
 			this.label2.TabIndex = 1;
@@ -198,7 +198,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(48, 165);
+			this.label3.Location = new System.Drawing.Point(58, 165);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(42, 13);
 			this.label3.TabIndex = 1;
@@ -207,17 +207,17 @@
 			// cbGender
 			// 
 			this.cbGender.FormattingEnabled = true;
-			this.cbGender.Location = new System.Drawing.Point(137, 162);
+			this.cbGender.Location = new System.Drawing.Point(147, 162);
 			this.cbGender.Name = "cbGender";
-			this.cbGender.Size = new System.Drawing.Size(100, 21);
+			this.cbGender.Size = new System.Drawing.Size(131, 21);
 			this.cbGender.TabIndex = 5;
 			// 
 			// dtDateOfBirth
 			// 
 			this.dtDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtDateOfBirth.Location = new System.Drawing.Point(137, 133);
+			this.dtDateOfBirth.Location = new System.Drawing.Point(147, 133);
 			this.dtDateOfBirth.Name = "dtDateOfBirth";
-			this.dtDateOfBirth.Size = new System.Drawing.Size(100, 20);
+			this.dtDateOfBirth.Size = new System.Drawing.Size(131, 20);
 			this.dtDateOfBirth.TabIndex = 4;
 			// 
 			// DlgUser
@@ -225,7 +225,7 @@
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(286, 350);
+			this.ClientSize = new System.Drawing.Size(336, 350);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.cbGender);

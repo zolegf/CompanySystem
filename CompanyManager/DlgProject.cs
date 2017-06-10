@@ -61,9 +61,6 @@ namespace CompanyManager
 					Cost = Convert.ToDecimal(txtCost.Text),
 					Manager = manager
 				};
-
-				Master.Instance.Projects.Add(Project);
-				Project.Manager.Projects.Add(Project);
 			}
 			else
 			{
@@ -74,14 +71,6 @@ namespace CompanyManager
 				Project.State = (ProjectState)cbState.SelectedItem;
 				Project.Cost = Convert.ToDecimal(txtCost.Text);
 				Project.Manager = manager;
-
-				if (Project.State == ProjectState.Canceled)
-				{
-					foreach (var item in Project.Tasks)
-					{
-						item.TaskState = TaskState.Cancelled;
-					}
-				}
 			}
 		}
 	}

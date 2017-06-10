@@ -39,7 +39,7 @@ namespace CompanyManager
 			listManagers.Items.Clear();
 
 			var users = Master.Instance.Users;
-			var selectedDepartment = cbDepartments.SelectedItem as Department;
+			var selectedDepartment = (Department)cbDepartments.SelectedItem;
 			if (selectedDepartment != null)
 				users = Master.Instance.Users.Where(u => u.Department == selectedDepartment).ToList();
 
@@ -88,9 +88,6 @@ namespace CompanyManager
 
 			if (dlgDepartment.ShowDialog() == DialogResult.OK)
 			{
-				Master.Instance.Departments.Remove(dlgDepartment.Department);
-				Master.Instance.Departments.Add(dlgDepartment.Department);
-
 				selectedItem.Tag = dlgDepartment.Department;
 				selectedItem.SubItems[0].Text = selectedDepartment.Id.ToString();
 				selectedItem.SubItems[1].Text = selectedDepartment.Name;
@@ -112,21 +109,22 @@ namespace CompanyManager
 
 			if (dlgDepartment.ShowDialog() == DialogResult.OK)
 			{
+				Master.Instance.AddDepartment(dlgDepartment.Department);
+
 				AddDepartment(dlgDepartment.Department);
-				Master.Instance.Departments.Add(dlgDepartment.Department);
 				cbDepartments.Items.Add(dlgDepartment.Department);
 				LoadEmployees();
 				LoadManagers();
 			}
 		}
 
-		private void btnDeleteDeaprtment_Click(object sender, EventArgs e)
+		private void btnDeleteDepartment_Click(object sender, EventArgs e)
 		{
 			var selected = listDepartments.SelectedItems[0];
 			if (selected != null)
 			{
 				listDepartments.Items.Remove(selected);
-				Master.Instance.Departments.Remove((Department)selected.Tag);
+				Master.Instance.DeleteDepartment((Department)selected.Tag);
 			}
 		}
 
@@ -182,14 +180,8 @@ namespace CompanyManager
 
 		private void PromoteEmployee(ListViewItem employeeItem, Manager manager)
 		{
-			var employee = (Employee)employeeItem.Tag;
 			listEmployees.Items.Remove(employeeItem);
-
-			Master.Instance.Users.Remove(employee);
-			employee.Department.Employees.Remove(employee);
-
-			Master.Instance.Users.Add(manager);
-			manager.Department.Employees.Add(manager);
+			Master.Instance.PromoteEmployee((Employee)employeeItem.Tag, manager);
 
 			AddUser(listManagers, manager);
 		}

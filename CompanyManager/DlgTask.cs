@@ -18,7 +18,7 @@ namespace CompanyManager
 		{
 			Manager user = (Manager)Master.Instance.CurentUser;
 
-			cbEmployees.Items.AddRange(user.Department.Employees.ToArray());
+			cbEmployees.Items.AddRange(user.Department.Employees.Where(emp => emp is Employee).ToArray());
 			cbProjects.Items.AddRange(user.Projects.ToArray());
 
 			if (Task == null)
@@ -55,11 +55,6 @@ namespace CompanyManager
 					Employee = (Employee)cbEmployees.SelectedItem,
 					Project = (Project)cbProjects.SelectedItem,				
 				};
-
-				user.Tasks.Add(Task);
-				Task.Employee.Projects.Add(Task.Project);
-				Master.Instance.Tasks.Add(Task);
-				Task.Project.Tasks.Add(Task);
 			}
 			else
 			{

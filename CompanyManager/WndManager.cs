@@ -37,9 +37,10 @@ namespace CompanyManager
 
 			if (projectDlg.ShowDialog() == DialogResult.OK)
 			{
+				Master.Instance.AddProject(projectDlg.Project);
+
 				AddProject(projectDlg.Project);
 				cbProjects.Items.Add(projectDlg.Project);
-
 				LoadTaskList();
 			}
 		}
@@ -128,25 +129,23 @@ namespace CompanyManager
 			if (taskDlg.ShowDialog() == DialogResult.OK)
 			{
 				AddTask(taskDlg.Task);
+				Master.Instance.AddTask(taskDlg.Task);
 			}
 		}
 
 		private void btnDeleteProject_Click(object sender, EventArgs e)
 		{
-			Manager user = (Manager)Master.Instance.CurentUser;
-			var selectedItem = listProjects.SelectedItems[0];
-			if (selectedItem != null)
+			var selected = listProjects.SelectedItems[0];
+			if (selected != null)
 			{
-				var project = (Project)selectedItem.Tag;
-				listProjects.Items.Remove(selectedItem);
+				var project = (Project)selected.Tag;
+				Master.Instance.DeleteProject(project);
+
+				listProjects.Items.Remove(selected);
 				if (cbProjects.SelectedItem != null && cbProjects.SelectedItem.Equals(project))
 					cbProjects.Text = string.Empty;
 
 				cbProjects.Items.Remove(project);
-				Master.Instance.Tasks.RemoveAll(t => t.Project.Equals(project));
-				user.Tasks.RemoveAll(t => t.Project.Equals(project));
-				user.Projects.Remove(project);
-
 				LoadTaskList();
 			}
 		}
@@ -164,6 +163,14 @@ namespace CompanyManager
 
 			if (projectDlg.ShowDialog() == DialogResult.OK)
 			{
+				if (project.State == ProjectState.Canceled)
+				{
+					foreach (var item in project.Tasks)
+					{
+						item.TaskState = TaskState.Cancelled;
+					}
+				}
+
 				selectedItem.SubItems[1].Text = project.Title;
 				selectedItem.SubItems[2].Text = project.StartTime.ToShortDateString();
 				selectedItem.SubItems[3].Text = project.EndTime.ToShortDateString();
@@ -216,14 +223,10 @@ namespace CompanyManager
 
 		private void btnDeleteTask_Click(object sender, EventArgs e)
 		{
-			var selectedItem = listTasks.SelectedItems[0];
-			var task = (Task)selectedItem.Tag;
-			listTasks.Items.Remove(selectedItem);
+			var selected = listTasks.SelectedItems[0];
+			listTasks.Items.Remove(selected);
 
-			var user = (Manager)Master.Instance.CurentUser;
-			user.Tasks.Remove(task);
-			task.Project.Tasks.Remove(task);
-			Master.Instance.Tasks.Remove(task);
-		}
+			Master.Instance.DeleteTask((Task)selected.Tag);
+		}	
 	}
 }

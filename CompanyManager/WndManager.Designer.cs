@@ -62,6 +62,7 @@
 			// 
 			// btnEditProject
 			// 
+			this.btnEditProject.Enabled = false;
 			this.btnEditProject.Location = new System.Drawing.Point(363, 127);
 			this.btnEditProject.Name = "btnEditProject";
 			this.btnEditProject.Size = new System.Drawing.Size(87, 23);
@@ -72,6 +73,7 @@
 			// 
 			// btnDeleteProject
 			// 
+			this.btnDeleteProject.Enabled = false;
 			this.btnDeleteProject.Location = new System.Drawing.Point(469, 127);
 			this.btnDeleteProject.Name = "btnDeleteProject";
 			this.btnDeleteProject.Size = new System.Drawing.Size(87, 23);
@@ -195,6 +197,7 @@
 			// 
 			// btnEditTask
 			// 
+			this.btnEditTask.Enabled = false;
 			this.btnEditTask.Location = new System.Drawing.Point(363, 123);
 			this.btnEditTask.Name = "btnEditTask";
 			this.btnEditTask.Size = new System.Drawing.Size(87, 23);
@@ -205,6 +208,7 @@
 			// 
 			// btnDeleteTask
 			// 
+			this.btnDeleteTask.Enabled = false;
 			this.btnDeleteTask.Location = new System.Drawing.Point(469, 123);
 			this.btnDeleteTask.Name = "btnDeleteTask";
 			this.btnDeleteTask.Size = new System.Drawing.Size(87, 23);

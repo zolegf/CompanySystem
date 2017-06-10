@@ -141,11 +141,19 @@ namespace CompanySystem
 
 		public User Authenticate(string userName, string password)
 		{
-			var user = Users.Find(item => item.Username == userName);
-			CurentUser = user;
-			WindowTitle = $"{AppName}: {CurentUser.GetType().Name}";
+			if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+				return null;
 
-			return user != null && user.Password == password ? user : null;
+			CurentUser = Users.Find(item => item.Username == userName);
+			if (CurentUser == null)
+				return null;
+
+			if (CurentUser.Password != password)
+				return null;
+
+			WindowTitle = $"{AppName}: {CurentUser?.GetType().Name}";
+
+			return CurentUser;
 		}
 
 		public void SaveChanges()

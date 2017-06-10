@@ -27,10 +27,8 @@ namespace CompanyManager
 
 			foreach (var item in users)
 			{
-				if (item is Admin)
-					continue;
-
-				list.Items.Add(item);
+				if (item is Employee)
+					list.Items.Add(item);
 			}
 		}
 
@@ -95,7 +93,6 @@ namespace CompanyManager
 					user.Department = Department;
 				}
 			}
-
 
 			DialogResult = DialogResult.OK;
 		}

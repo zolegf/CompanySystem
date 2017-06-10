@@ -106,6 +106,7 @@
 			// 
 			// DlgSignIn
 			// 
+			this.AcceptButton = this.btnLogin;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(362, 230);
@@ -122,7 +123,6 @@
 			this.Name = "DlgSignIn";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Sign in to CompanySystem";
-			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DlgSignIn_KeyDown);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

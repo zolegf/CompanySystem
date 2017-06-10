@@ -11,10 +11,5 @@ namespace CompanySystem
     {
         public List<Project> Projects { get; set; } = new List<Project>();
         public List<Task> Tasks { get; set; } = new List<Task>();
-
-
-       
-
-
     }
 }

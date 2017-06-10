@@ -36,8 +36,6 @@ namespace CompanyManager
                     Password = textBoxPasswordSignUp.Text,
                     Department = department,
                 };
-               
-
             }
             else // user je employee
             {

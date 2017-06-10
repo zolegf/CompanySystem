@@ -20,19 +20,29 @@ namespace CompanyManager
 			Text = Master.Instance.WindowTitle;
 
 			LoadDepartments();
+			LoadEmployees();
+			LoadManagers();
 		}
 
-		//private void LoadUsers()
-		//{
-		//    listUsers.Items.Clear();
-		//    foreach (var item in Master.Instance.Users)
-		//    {
-		//        if (item is Admin)
-		//            continue;
+		private void LoadEmployees()
+		{
+			listEmployees.Items.Clear();
+			foreach (var item in Master.Instance.Users)
+			{
+				if (item is Employee)
+					AddUser(listEmployees, item);
+			}
+		}
 
-		//        listUsers.Items.Add(item);
-		//    }
-		//}
+		private void LoadManagers()
+		{
+			listManagers.Items.Clear();
+			foreach (var item in Master.Instance.Users)
+			{
+				if (item is Manager)
+					AddUser(listManagers, item);
+			}
+		}
 
 		private void LoadDepartments()
 		{
@@ -40,6 +50,22 @@ namespace CompanyManager
 			foreach (var item in Master.Instance.Departments)
 			{
 				AddDepartment(item);
+			}
+
+			// reload filter combo box too
+
+			// remember last selected item
+			var selected = (Department)cbDepartments.SelectedItem;
+			cbDepartments.Items.Clear();
+
+			cbDepartments.Items.AddRange(Master.Instance.Departments.ToArray());
+			if (selected != null)
+			{
+				foreach (var cbItem in cbDepartments.Items)
+				{
+					if (((Department)cbItem).Id == selected.Id)
+						cbDepartments.SelectedItem = cbItem;
+				}
 			}
 		}
 
@@ -50,13 +76,14 @@ namespace CompanyManager
 				Owner = this,
 				StartPosition = FormStartPosition.CenterParent,
 				Department = listDepartments.SelectedItems[0]?.Tag as Department,
-			};			
+			};
 
 			if (dlgDepartment.ShowDialog() == DialogResult.OK)
 			{
 				Master.Instance.Departments.Remove(dlgDepartment.Department);
 				Master.Instance.Departments.Add(dlgDepartment.Department);
 				LoadDepartments();
+				LoadEmployees();
 			}
 		}
 
@@ -84,7 +111,7 @@ namespace CompanyManager
 				Master.Instance.Departments.Remove((Department)selected.Tag);
 			}
 		}
-		
+
 		private void AddDepartment(Department item)
 		{
 			var lvItem = new ListViewItem(new string[] {
@@ -96,6 +123,20 @@ namespace CompanyManager
 			listDepartments.Items.Add(lvItem);
 		}
 
+		private void AddUser(ListView list, User item)
+		{
+			var lvItem = new ListViewItem(
+				new string[] {
+					item.Id.ToString(),
+					item.FirstName,
+					item.LastName,
+					item.Department.Name
+				});
+
+			lvItem.Tag = item;
+			list.Items.Add(lvItem);
+		}
+
 		private void listDepartments_DoubleClick(object sender, EventArgs e)
 		{
 			var selected = listDepartments.SelectedItems[0];
@@ -103,6 +144,12 @@ namespace CompanyManager
 			{
 				btnEditDeaprtment_Click(this, e);
 			}
+		}
+
+		private void listDepartments_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			btnDeleteDepartment.Enabled = listDepartments.SelectedItems.Count > 0;
+			btnEditDeaprtment.Enabled = listDepartments.SelectedItems.Count > 0;
 		}
 	}
 }

@@ -69,6 +69,9 @@ namespace CompanyManager
 
 		private void listProjects_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			btnEditProject.Enabled = listProjects.SelectedItems.Count > 0;
+			btnDeleteProject.Enabled = listProjects.SelectedItems.Count > 0;
+
 			var selectedItem = listProjects.SelectedItems[0];
 			if (selectedItem != null)
 			{
@@ -117,9 +120,6 @@ namespace CompanyManager
 			var project = (Project)selectedItem.Tag;
 			var projectDlg = new DlgProject() { Owner = this, StartPosition = FormStartPosition.CenterParent };
 			projectDlg.ShowDialog();
-
-
-
 		}
 
         private void btnEditTask_Click(object sender, EventArgs e)

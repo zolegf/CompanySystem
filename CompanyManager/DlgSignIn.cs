@@ -30,20 +30,31 @@ namespace CompanyManager
 				return;
 			}
 
+			Hide();
+
 			if (user is Admin)
 			{
-				Hide();
-				new WndAdmin { Owner = this, StartPosition = FormStartPosition.CenterParent }.ShowDialog();
+				new WndAdmin
+				{
+					Owner = this,
+					StartPosition = FormStartPosition.CenterParent
+				}.ShowDialog();
 			}
 			else if (user is Manager)
 			{
-				Hide();
-				new WndManager { Owner = this, StartPosition = FormStartPosition.CenterParent }.ShowDialog();
+				new WndManager
+				{
+					Owner = this,
+					StartPosition = FormStartPosition.CenterParent
+				}.ShowDialog();
 			}
 			else
 			{
-				Hide();
-				new WndEmployee { Owner = this, StartPosition = FormStartPosition.CenterParent }.ShowDialog();
+				new WndEmployee
+				{
+					Owner = this,
+					StartPosition = FormStartPosition.CenterParent
+				}.ShowDialog();
 			}
 
 			Close();
@@ -52,12 +63,6 @@ namespace CompanyManager
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
 			Close();
-		}
-
-		private void DlgSignIn_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-				onClickLogIn(this, EventArgs.Empty);
 		}
 	}
 }

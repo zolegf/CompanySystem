@@ -163,14 +163,6 @@ namespace CompanyManager
 
 			if (projectDlg.ShowDialog() == DialogResult.OK)
 			{
-				if (project.State == ProjectState.Canceled)
-				{
-					foreach (var item in project.Tasks)
-					{
-						item.TaskState = TaskState.Cancelled;
-					}
-				}
-
 				selectedItem.SubItems[1].Text = project.Title;
 				selectedItem.SubItems[2].Text = project.StartTime.ToShortDateString();
 				selectedItem.SubItems[3].Text = project.EndTime.ToShortDateString();
